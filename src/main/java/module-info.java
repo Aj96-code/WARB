@@ -38,11 +38,18 @@ module com.example.warb {
     requires com.sun.jna;
     requires com.sun.jna.platform;
     requires com.sun.xml.txw2;
+    requires net.bytebuddy;
+    requires org.hibernate.orm.core;
+    requires org.hibernate.commons.annotations;
 
     opens com.example.warb to spring.core, spring.beans, spring.context, spring.data.jpa;
     opens com.example.warb.SpringConfiuartion to spring.core, spring.beans, spring.context, spring.data.jpa;
+    opens com.example.warb.Repositories to spring.core, spring.beans, spring.context, spring.data.jpa;
+    opens com.example.warb.JPAEntities to  spring.core, spring.beans, spring.context, spring.data.jpa;
+    opens com.example.warb.FXMLControllers to javafx.fxml,spring.core, spring.beans, spring.context, spring.data.jpa ;
     exports com.example.warb;
     exports com.example.warb.FXMLControllers;
     exports com.example.warb.JPAEntities;
-    opens com.example.warb.FXMLControllers to javafx.fxml,spring.core, spring.beans, spring.context, spring.data.jpa ;
+    exports com.example.warb.Repositories;
+
 }

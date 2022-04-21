@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class Main extends Application {
     @Override
     public void init() throws IOException {
         SpringContext = SpringApplication.run(Main.class);
+        SpringContext.getClass().getClassLoader();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
         fxmlLoader.setControllerFactory(SpringContext::getBean);
         Root = fxmlLoader.load();

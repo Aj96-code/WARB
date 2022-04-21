@@ -1,11 +1,9 @@
 package com.example.warb.JPAEntities;
 
 import javax.persistence.*;
-import java.io.Serializable;
-
 @Entity
 @Table(name = "attendance")
-public class Attendance  implements Serializable {
+public class Attendance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id", nullable = false)

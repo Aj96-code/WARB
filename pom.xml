@@ -171,6 +171,13 @@
             <version>5.7.0</version>
             <scope>compile</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.12.9</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -181,7 +188,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <argLine>
-                        java --add-opens java.base/java.lang.Integer=ALL-UNNAMED
+                        java --add-exports java.base/jdk.internal.misc=ALL-UNNAMED
                     </argLine>
                     <argLine>
                         java --add-opens java.base/java.lang=spring.core
