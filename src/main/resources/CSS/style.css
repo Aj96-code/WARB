@@ -1,0 +1,91 @@
+.root{
+
+  -fx-font-family: "Lucida Console";
+}
+.button {
+
+  border: none;
+  -fx-background-color:  #0f3063;
+  -fx-background-radius :0em;
+
+
+}
+.button:hover {
+  -fx-background-color: #19468c;
+}
+
+.button:pressed {
+-fx-background-color: #7156DD;
+}
+
+.button:focused {
+-fx-background-color: #7D6cc8;
+-fx-border-color : #cdd1d6;
+-fx-border-width: 0px 0px 0px 3px;
+}
+
+#BtnSave {
+
+  border: none;
+  -fx-background-color:  #fff;
+  -fx-background-radius :0.25em;
+
+
+}
+#BtnSave:hover {
+  -fx-background-color: #B1B1B1;
+}
+
+#BtnSave:pressed {
+-fx-background-color: #B1B1B1;
+}
+
+#BtnSave:focused {
+-fx-background-color: #B1B1B1;
+-fx-border-color : #B1B1B1;
+-fx-border-width: 0px 0px 0px 3px;
+}
+
+#BtnUpdate{
+
+  border: none;
+  -fx-background-color:  #fff;
+  -fx-background-radius :0.25em;
+
+
+}
+#BtnUpdate:hover {
+  -fx-background-color: #B1B1B1;
+}
+
+#BtnUpdate:pressed {
+-fx-background-color: #B1B1B1;
+}
+
+#BtnUpdate:focused {
+-fx-background-color: #B1B1B1;
+-fx-border-color : #B1B1B1;
+-fx-border-width: 0px 0px 0px 3px;
+}
+
+#BtnDelete {
+
+  border: none;
+  -fx-background-color:  #fff;
+  -fx-background-radius :0.25em;
+
+
+}
+#BtnDelete:hover {
+  -fx-background-color: #B1B1B1;
+}
+
+#BtnDelete:pressed {
+-fx-background-color: #B1B1B1;
+}
+
+#BtnDelete:focused {
+-fx-background-color: #B1B1B1;
+-fx-border-color : #B1B1B1;
+-fx-border-width: 0px 0px 0px 3px;
+}
