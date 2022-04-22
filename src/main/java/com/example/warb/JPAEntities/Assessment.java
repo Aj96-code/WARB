@@ -79,10 +79,64 @@ public class Assessment {
     @Column(name = "WritingDrawing")
     private Integer writingDrawing;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Id_Stu")
-    private int idStu;
-    @Id
+    private Student idStu;
+
+    @Column(name = "ability_test")
+    private Integer abilityTest1;
+
+    @Column(name = "com_task")
+    private Integer comTask1;
+
+    @Column(name = "gen_knowledge")
+    private Integer genKnowledge1;
+
+    @Column(name = "geometry")
+    private Integer geometry1;
+
+    @Column(name = "lang_art_grade4")
+    private Integer langArtGrade41;
+
+    @Column(name = "lang_art_grade5")
+    private Integer langArtGrade51;
+
+    @Column(name = "lang_art_grade6curri")
+    private Integer langArtGrade6curri;
+
+    @Column(name = "math_grade4")
+    private Integer mathGrade41;
+
+    @Column(name = "math_grade5")
+    private Integer mathGrade51;
+
+    @Column(name = "math_grade6")
+    private Integer mathGrade61;
+
+    @Column(name = "math_grade6curri")
+    private Integer mathGrade6curri;
+
+    @Column(name = "num_est")
+    private Integer numEst1;
+
+    @Column(name = "number_concept")
+    private Integer numberConcept1;
+
+    @Column(name = "oral_lang")
+    private Integer oralLang1;
+
+    @Column(name = "social_studies")
+    private Integer socialStudies1;
+
+    @Column(name = "study_skills")
+    private Integer studySkills1;
+
+    @Column(name = "writing_drawing")
+    private Integer writingDrawing1;
+
+    @Column(name = "idStu", nullable = false)
+    private Integer idStu1;
+
     public Integer getId() {
         return id;
     }
@@ -275,12 +329,156 @@ public class Assessment {
         this.writingDrawing = writingDrawing;
     }
 
-    public int getIdStu() {
+    public Student getIdStu() {
         return idStu;
     }
 
-    public void setIdStu(int idStu) {
+    public void setIdStu(Student idStu) {
         this.idStu = idStu;
+    }
+
+    public Integer getAbilityTest1() {
+        return abilityTest1;
+    }
+
+    public void setAbilityTest1(Integer abilityTest1) {
+        this.abilityTest1 = abilityTest1;
+    }
+
+    public Integer getComTask1() {
+        return comTask1;
+    }
+
+    public void setComTask1(Integer comTask1) {
+        this.comTask1 = comTask1;
+    }
+
+    public Integer getGenKnowledge1() {
+        return genKnowledge1;
+    }
+
+    public void setGenKnowledge1(Integer genKnowledge1) {
+        this.genKnowledge1 = genKnowledge1;
+    }
+
+    public Integer getGeometry1() {
+        return geometry1;
+    }
+
+    public void setGeometry1(Integer geometry1) {
+        this.geometry1 = geometry1;
+    }
+
+    public Integer getLangArtGrade41() {
+        return langArtGrade41;
+    }
+
+    public void setLangArtGrade41(Integer langArtGrade41) {
+        this.langArtGrade41 = langArtGrade41;
+    }
+
+    public Integer getLangArtGrade51() {
+        return langArtGrade51;
+    }
+
+    public void setLangArtGrade51(Integer langArtGrade51) {
+        this.langArtGrade51 = langArtGrade51;
+    }
+
+    public Integer getLangArtGrade6curri() {
+        return langArtGrade6curri;
+    }
+
+    public void setLangArtGrade6curri(Integer langArtGrade6curri) {
+        this.langArtGrade6curri = langArtGrade6curri;
+    }
+
+    public Integer getMathGrade41() {
+        return mathGrade41;
+    }
+
+    public void setMathGrade41(Integer mathGrade41) {
+        this.mathGrade41 = mathGrade41;
+    }
+
+    public Integer getMathGrade51() {
+        return mathGrade51;
+    }
+
+    public void setMathGrade51(Integer mathGrade51) {
+        this.mathGrade51 = mathGrade51;
+    }
+
+    public Integer getMathGrade61() {
+        return mathGrade61;
+    }
+
+    public void setMathGrade61(Integer mathGrade61) {
+        this.mathGrade61 = mathGrade61;
+    }
+
+    public Integer getMathGrade6curri() {
+        return mathGrade6curri;
+    }
+
+    public void setMathGrade6curri(Integer mathGrade6curri) {
+        this.mathGrade6curri = mathGrade6curri;
+    }
+
+    public Integer getNumEst1() {
+        return numEst1;
+    }
+
+    public void setNumEst1(Integer numEst1) {
+        this.numEst1 = numEst1;
+    }
+
+    public Integer getNumberConcept1() {
+        return numberConcept1;
+    }
+
+    public void setNumberConcept1(Integer numberConcept1) {
+        this.numberConcept1 = numberConcept1;
+    }
+
+    public Integer getOralLang1() {
+        return oralLang1;
+    }
+
+    public void setOralLang1(Integer oralLang1) {
+        this.oralLang1 = oralLang1;
+    }
+
+    public Integer getSocialStudies1() {
+        return socialStudies1;
+    }
+
+    public void setSocialStudies1(Integer socialStudies1) {
+        this.socialStudies1 = socialStudies1;
+    }
+
+    public Integer getStudySkills1() {
+        return studySkills1;
+    }
+
+    public void setStudySkills1(Integer studySkills1) {
+        this.studySkills1 = studySkills1;
+    }
+
+    public Integer getWritingDrawing1() {
+        return writingDrawing1;
+    }
+
+    public void setWritingDrawing1(Integer writingDrawing1) {
+        this.writingDrawing1 = writingDrawing1;
+    }
+
+    public Integer getIdStu1() {
+        return idStu1;
+    }
+
+    public void setIdStu1(Integer idStu1) {
+        this.idStu1 = idStu1;
     }
 
 }

@@ -2,6 +2,8 @@ package com.example.warb.JPAEntities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "student")
@@ -78,21 +80,15 @@ public class Student {
     @Column(name = "ERN")
     private String ern;
 
+    @OneToMany(mappedBy = "idStu")
+    private Set<Attendance> attendances = new LinkedHashSet<>();
 
-    @OneToOne(targetEntity = Attendance.class,
-            mappedBy = "idStu", cascade = CascadeType.ALL,
-    fetch = FetchType.EAGER)
-    private Attendance attendance;
+    @OneToMany(mappedBy = "idStu")
+    private Set<Health> health = new LinkedHashSet<>();
 
-    @OneToOne(targetEntity =Assessment.class,mappedBy = "idStu",
-            fetch = FetchType.LAZY)
-    private Health health;
+    @OneToMany(mappedBy = "idStu")
+    private Set<Assessment> assessments = new LinkedHashSet<>();
 
-    @OneToOne(targetEntity =Assessment.class,mappedBy = "idStu",
-    fetch = FetchType.LAZY)
-    private Assessment assessment;
-    @Id
-    @GeneratedValue
     public Integer getId() {
         return id;
     }
@@ -276,29 +272,29 @@ public class Student {
     public void setErn(String ern) {
         this.ern = ern;
     }
-    @OneToOne
-    public Attendance getAttendance() {
-        return attendance;
+
+    public Set<Attendance> getAttendances() {
+        return attendances;
     }
 
-    public void setAttendance(Attendance attendance) {
-        this.attendance = attendance;
+    public void setAttendances(Set<Attendance> attendances) {
+        this.attendances = attendances;
     }
-    @OneToOne
-    public Health getHealth() {
+
+    public Set<Health> getHealth() {
         return health;
     }
 
-    public void setHealth(Health health) {
+    public void setHealth(Set<Health> health) {
         this.health = health;
     }
-    @OneToOne
-    public Assessment getAssessment() {
-        return assessment;
+
+    public Set<Assessment> getAssessments() {
+        return assessments;
     }
 
-    public void setAssessment(Assessment assessment) {
-        this.assessment = assessment;
+    public void setAssessments(Set<Assessment> assessments) {
+        this.assessments = assessments;
     }
 
 }

@@ -45,7 +45,7 @@ module com.example.warb {
     opens com.example.warb to spring.core, spring.beans, spring.context, spring.data.jpa;
     opens com.example.warb.SpringConfiuartion to spring.core, spring.beans, spring.context, spring.data.jpa;
     opens com.example.warb.Repositories to spring.core, spring.beans, spring.context, spring.data.jpa;
-    opens com.example.warb.JPAEntities to  spring.core, spring.beans, spring.context, spring.data.jpa;
+    opens com.example.warb.JPAEntities to  spring.core, spring.beans, spring.context, spring.data.jpa, org.hibernate.orm.core;
     opens com.example.warb.FXMLControllers to javafx.fxml,spring.core, spring.beans, spring.context, spring.data.jpa ;
     exports com.example.warb;
     exports com.example.warb.FXMLControllers;

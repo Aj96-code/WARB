@@ -28,10 +28,25 @@ public class Health {
     @Column(name = "Other", length = 100)
     private String other;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Id_Stu")
-    private int idStu;
-    @Id
+    private Student idStu;
+
+    @Column(name = "ear_problem")
+    private String earProblem1;
+
+    @Column(name = "eye_problem")
+    private String eyeProblem1;
+
+    @Column(name = "physical_defects")
+    private String physicalDefects1;
+
+    @Column(name = "urinary_disoder")
+    private String urinaryDisoder1;
+
+    @Column(name = "idStu", nullable = false)
+    private Integer idStu1;
+
     public Integer getId() {
         return id;
     }
@@ -88,12 +103,52 @@ public class Health {
         this.other = other;
     }
 
-    public int getIdStu() {
+    public Student getIdStu() {
         return idStu;
     }
 
-    public void setIdStu(int idStu) {
+    public void setIdStu(Student idStu) {
         this.idStu = idStu;
+    }
+
+    public String getEarProblem1() {
+        return earProblem1;
+    }
+
+    public void setEarProblem1(String earProblem1) {
+        this.earProblem1 = earProblem1;
+    }
+
+    public String getEyeProblem1() {
+        return eyeProblem1;
+    }
+
+    public void setEyeProblem1(String eyeProblem1) {
+        this.eyeProblem1 = eyeProblem1;
+    }
+
+    public String getPhysicalDefects1() {
+        return physicalDefects1;
+    }
+
+    public void setPhysicalDefects1(String physicalDefects1) {
+        this.physicalDefects1 = physicalDefects1;
+    }
+
+    public String getUrinaryDisoder1() {
+        return urinaryDisoder1;
+    }
+
+    public void setUrinaryDisoder1(String urinaryDisoder1) {
+        this.urinaryDisoder1 = urinaryDisoder1;
+    }
+
+    public Integer getIdStu1() {
+        return idStu1;
+    }
+
+    public void setIdStu1(Integer idStu1) {
+        this.idStu1 = idStu1;
     }
 
 }
