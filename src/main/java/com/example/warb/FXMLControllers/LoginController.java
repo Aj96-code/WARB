@@ -7,6 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -15,7 +18,8 @@ import java.net.URL;
 public class LoginController {
 
 
-
+    @Autowired
+    BeanFactory BeanContainer;
 
     public void DashboardForm() throws MalformedURLException {
         Parent Root;
@@ -23,6 +27,7 @@ public class LoginController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(new URL(getClass().getResource("/com/example/warb/Main.fxml")
                     .toExternalForm()));
+            fxmlLoader.setControllerFactory(BeanContainer::getBean);
             Root = fxmlLoader.load();
             Stage loginStage = new Stage();
             loginStage.getIcons().add(new Image(getClass().getResource("/img/logo2.png").toExternalForm()));

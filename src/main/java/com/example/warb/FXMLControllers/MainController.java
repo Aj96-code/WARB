@@ -1,13 +1,18 @@
 package com.example.warb.FXMLControllers;
 
 import com.example.warb.Main;
+import com.example.warb.SpringConfiuartion.SpringConfiguration;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
+import javafx.util.Callback;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -20,6 +25,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 public class MainController implements Initializable{
     private ConfigurableApplicationContext SpringContext;
+    @Autowired
+    private BeanFactory BeanContainer;
 
     @FXML
     private StackPane contentArea;
@@ -56,9 +63,9 @@ public class MainController implements Initializable{
     }
 
     public void attendance(javafx.event.ActionEvent actionEvent) throws IOException, ClassNotFoundException {
-        SpringContext = SpringApplication.run(Main.class);
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/warb/attendance.fxml"));
-        fxmlLoader.setControllerFactory(SpringContext::getBean);
+        fxmlLoader.setControllerFactory(BeanContainer::getBean);
         Parent fxml = fxmlLoader.load();
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
