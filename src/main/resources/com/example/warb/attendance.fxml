@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<Pane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.warb.FXMLControllers.AttendanceController">
+    <children>
+        <GridPane alignment="CENTER" hgap="10" prefHeight="661.0" prefWidth="853.0" vgap="10" xmlns:fx="http://javafx.com/fxml">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints halignment="LEFT" maxWidth="574.8363209521085" minWidth="350.0" prefWidth="392.83635146968663">
+                </ColumnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="Infinity" minWidth="276.0727404482509" prefWidth="458.0727099306728">
+                </ColumnConstraints>
+            </columnConstraints>
+
+
+            <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <spacing>5</spacing>
+                <Label>Student List</Label>
+                <TableView fx:id="TVStudentList" prefHeight="368.0" prefWidth="356.0">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+                </TableView>
+                <Label>Attendance Record</Label>
+                <TableView fx:id="TVStudentAttendance">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+                </TableView>
+            </VBox>
+
+
+
+
+            <VBox alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <spacing>10</spacing>
+                <HBox>
+                    <Label text="ID">
+                        <padding>
+                            <Insets right="10" top="1" />
+                        </padding>
+                        <font>
+                            <Font size="12" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="TbId" prefWidth="50" />
+                </HBox>
+                <HBox>
+                    <Label text="First Name">
+                        <padding>
+                            <Insets right="10" />
+                        </padding>
+                        <font>
+                            <Font size="12" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="TbFirstName" prefWidth="150" />
+                </HBox>
+                <HBox>
+                    <Label text="Middle Name">
+                        <padding>
+                            <Insets right="10" />
+                        </padding>
+                        <font>
+                            <Font size="12" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="TbMiddleName" prefWidth="150" />
+                </HBox>
+                <HBox>
+                    <Label text="Last Name">
+                        <padding>
+                            <Insets bottom="20" right="10" />
+                        </padding>
+                        <font>
+                            <Font size="12" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="TbLastName" prefWidth="150" />
+                </HBox>
+                <VBox>
+                   <HBox>
+                        <padding><Insets left="120" /> </padding>
+                        <spacing>70</spacing>
+                        <Label fx:id="LblGrade1" text="Grade 1" textFill="BLUE">
+                            <font>
+                                <Font name="System Bold" size="13" />
+                            </font>
+                            <padding><Insets bottom="10" /></padding>
+                        </Label>
+                        <Label fx:id="LblGrade2" text="Grade 2" textFill="BLUE">
+                            <font>
+                                <Font name="System Bold" size="13" />
+                            </font>
+                            <padding><Insets bottom="10" /></padding>
+                        </Label>
+                        <Label fx:id="LblGrade3" text="Grade 3" textFill="BLUE">
+                            <font>
+                                <Font name="System Bold" size="13" />
+                            </font>
+                            <padding><Insets bottom="10" /></padding>
+                        </Label>
+                    </HBox>
+                    <HBox>
+                        <Label text="Number of Days">
+                            <padding><Insets top="11" /> </padding>
+                            <font>
+                                <Font size="12" />
+                            </font>
+                        </Label>
+                        <VBox>
+                            <Label text="1">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade1Term1" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="2">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade1Term2" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="3">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade1Term3" prefWidth="30" />
+                        </VBox>
+                        <Line endY="150.0" opacity="0.5" startY="-2" stroke="#444" strokeLineCap="BUTT" strokeWidth="2.0" />
+                        <VBox>
+                            <Label text="1">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade2Term1" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="2">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade2Term2" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="3">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade2Term3" prefWidth="30" />
+                        </VBox>
+                        <Line endY="150.0" opacity="0.5" startY="-2" stroke="#444" strokeLineCap="BUTT" strokeWidth="2.0" />
+                        <VBox>
+                            <Label text="1">
+                                <padding>
+                                    <Insets left="14" />
+                                </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade3Term1" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="2">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade3Term2" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="3">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade3Term3" prefWidth="30" />
+                        </VBox>
+                        <spacing>5</spacing>
+                    </HBox>
+                </VBox>
+                <VBox>
+                    <HBox>
+                        <padding><Insets left="120" /> </padding>
+                        <spacing>70</spacing>
+                        <Label fx:id="LblGrade4" text="Grade 4" textFill="BLUE">
+                            <font>
+                                <Font name="System Bold" size="13" />
+                            </font>
+                        </Label>
+                        <Label fx:id="LblGrade5" text="Grade 5" textFill="BLUE">
+                            <font>
+                                <Font name="System Bold" size="13" />
+                            </font>
+                        </Label>
+                        <Label fx:id="LblGrade6" text="Grade 6" textFill="BLUE">
+                            <font>
+                                <Font name="System Bold" size="13" />
+                            </font>
+                            <padding><Insets bottom="10" /></padding>
+                        </Label>
+                    </HBox>
+                    <HBox>
+                        <Label fx:id="NumOfDays" text="Number of Days">
+                            <padding><Insets top="11" /> </padding>
+                            <font>
+                                <Font size="12" />
+                            </font>
+                        </Label>
+                        <VBox>
+                            <Label text="1">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade4Term1" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="2">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade4Term2" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="3">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade4Term3" prefWidth="30" />
+                        </VBox>
+                        <Line endY="150.0" opacity="0.5" startY="-2" stroke="#444" strokeLineCap="BUTT" strokeWidth="2.0" />
+                        <VBox>
+                            <Label text="1">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade5Term1" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="2">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade5Term2" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="3">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade5Term3" prefWidth="30" />
+                        </VBox>
+                        <Line endY="150.0" opacity="0.5" startY="-2" stroke="#444" strokeLineCap="BUTT" strokeWidth="2.0" />
+                        <VBox>
+                            <Label text="1">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade6Term1" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="2">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade6Term2" prefWidth="30" />
+                        </VBox>
+                        <VBox>
+                            <Label text="3">
+                                <padding>
+                                    <Insets left="14" /> </padding>
+                            </Label>
+                            <TextField fx:id="TbGrade6Term3" prefWidth="30" />
+                        </VBox>
+                        <spacing>5</spacing>
+                    </HBox>
+                    <HBox>
+                        <padding><Insets left="100" top="20" /> </padding>
+                        <spacing>10</spacing>
+                        <Button fx:id="BtnSave" mnemonicParsing="false" onAction="#BtnSave_Click" prefHeight="36.0" prefWidth="94.0" text="Save">
+                            <graphic>
+                                <ImageView fitHeight="20" fitWidth="20">
+                                    <image>
+                                         <Image url="@../../../img/save.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="14" />
+                            </font>
+                        </Button>
+                        <Button fx:id="BtnUpdate" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" text="Update">
+                            <graphic>
+                                <ImageView fitHeight="20" fitWidth="20">
+                                    <image>
+                                        <Image url="@../../../img/Update.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="14" />
+                            </font>
+                        </Button>
+                        <Button fx:id="BtnDelete" mnemonicParsing="false" prefHeight="36.0" prefWidth="94.0" text="Delete">
+                            <graphic>
+                                <ImageView fitHeight="20" fitWidth="20">
+                                    <image>
+                                        <Image url="@../../../img/Delete.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="14" />
+                            </font>
+                        </Button>
+                    </HBox>
+                </VBox>
+            </VBox>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+        </GridPane>
+    </children>
+</Pane>
