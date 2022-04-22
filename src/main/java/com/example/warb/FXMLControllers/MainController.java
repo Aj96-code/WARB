@@ -35,7 +35,10 @@ public class MainController implements Initializable{
 
 
         try {
-            Parent fxml = FXMLLoader.load(getClass().getResource("/com/example/warb/dashboard.fxml"));
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/warb/dashboard.fxml"));
+            fxmlLoader.setControllerFactory(BeanContainer::getBean);
+            Parent fxml = fxmlLoader.load();
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxml);
         } catch (IOException ex) {
@@ -44,20 +47,29 @@ public class MainController implements Initializable{
     }
 
     public void dashboard(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/com/example/warb/dashboard.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/warb/dashboard.fxml"));
+        fxmlLoader.setControllerFactory(BeanContainer::getBean);
+        Parent fxml = fxmlLoader.load();
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
     public void addstudent(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/com/example/warb/addstudent.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/warb/addstudent.fxml"));
+        fxmlLoader.setControllerFactory(BeanContainer::getBean);
+        Parent fxml = fxmlLoader.load();
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
     public void assessment(javafx.event.ActionEvent actionEvent) throws IOException {
 
-        Parent fxml = FXMLLoader.load(getClass().getResource("/com/example/warb/assessment.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/warb/assessment.fxml"));
+        fxmlLoader.setControllerFactory(BeanContainer::getBean);
+        Parent fxml = fxmlLoader.load();
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
@@ -72,13 +84,19 @@ public class MainController implements Initializable{
     }
 
     public void health(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/com/example/warb/health.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/warb/health.fxml"));
+        fxmlLoader.setControllerFactory(BeanContainer::getBean);
+        Parent fxml = fxmlLoader.load();
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
     public void settings(javafx.event.ActionEvent actionEvent) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/com/example/warb/settings.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/warb/settings.fxml"));
+        fxmlLoader.setControllerFactory(BeanContainer::getBean);
+        Parent fxml = fxmlLoader.load();
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
