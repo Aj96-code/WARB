@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
+<?import org.controlsfx.control.tableview2.*?>
 
 <Pane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.warb.FXMLControllers.AttendanceController">
     <children>
@@ -36,7 +37,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
                 </TableView>
-                <Label fx:id="LblAttendanceList" text="Attendance List">
+                <Label fx:id="LblAttendanceList" text="Attendance Records">
                     <padding>
                         <Insets right="10" top="1" />
                     </padding>
@@ -44,53 +45,10 @@
                         <Font name="System Bold" size="12" />
                     </font>
                 </Label>
-                <TableView fx:id="TVStudentAttendance">
-               <columns>
-                  <TableColumn fx:id="Id_Stu" prefWidth="39.12725758552551" text="Id_Stu" />
-                  <TableColumn prefWidth="70.83636856079102" text="Gr_1">
-                     <columns>
-                        <TableColumn fx:id="Yr1_Term1" prefWidth="22.58182144165039" text="1" />
-                        <TableColumn fx:id="Yr1_Term2" prefWidth="18.18182373046875" text="2" />
-                        <TableColumn fx:id="Yr1_Term3" minWidth="2.81817626953125" prefWidth="21.090911865234375" text="3" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="247.1636199951172" text="Gr_2">
-                     <columns>
-                        <TableColumn fx:id="Yr2_Term1" prefWidth="19.054534912109375" text="1" />
-                        <TableColumn fx:id="Yr2_Term2" prefWidth="19.436370849609375" text="2" />
-                        <TableColumn fx:id="Yr2_Term3" prefWidth="23.290924072265625" text="3" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="75.0" text="Gr_3">
-                     <columns>
-                        <TableColumn fx:id="Yr3_Term1" prefWidth="18.69091796875" text="1" />
-                        <TableColumn fx:id="Yr3_Term2" minWidth="0.0" prefWidth="21.454559326171875" text="2" />
-                        <TableColumn fx:id="Yr3_Term3" prefWidth="17.83636474609375" text="3" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="75.0" text="Gr_4">
-                     <columns>
-                        <TableColumn fx:id="Yr4_Term1" prefWidth="16.054534912109375" text="1" />
-                        <TableColumn fx:id="Yr4_Term2" prefWidth="19.036376953125" text="2" />
-                        <TableColumn fx:id="Yr4_Term3" prefWidth="19.0" text="3" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="75.0" text="Gr_5">
-                     <columns>
-                        <TableColumn fx:id="Yr5_Term1" prefWidth="20.05450439453125" text="1" />
-                        <TableColumn fx:id="Yr5_Term2" prefWidth="20.90911865234375" text="2" />
-                        <TableColumn fx:id="Yr5_Term3" prefWidth="18.89093017578125" text="3" />
-                     </columns>
-                  </TableColumn>
-                  <TableColumn prefWidth="53.50909423828125" text="Gr_6">
-                     <columns>
-                        <TableColumn fx:id="Yr6_Term1" prefWidth="18.30908203125" text="1" />
-                        <TableColumn fx:id="Yr6_Term2" minWidth="9.45458984375" prefWidth="20.45452880859375" text="2" />
-                        <TableColumn fx:id="Yr6_Term3" minWidth="7.61822509765625" prefWidth="13.96368408203125" text="3" />
-                     </columns>
-                  </TableColumn>
-               </columns>
-                </TableView>
+                <TableView2 fx:id="TV2StudentAttendance">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy></TableView2>
             </VBox>
 
 

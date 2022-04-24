@@ -1,6 +1,7 @@
 package com.example.warb;
 
 import com.example.warb.FXMLControllers.HelloController;
+import com.example.warb.Repositories.AttendanceRepository;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -26,6 +28,7 @@ import java.net.URISyntaxException;
 @EnableJpaRepositories("com.example.warb.Repositories")
 public class Main extends Application {
     private ConfigurableApplicationContext SpringContext;
+
     private Parent Root;
     double x,y;
     @Override
@@ -62,6 +65,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+
         Application.launch(args);
     }
 

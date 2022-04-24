@@ -1,7 +1,9 @@
 package com.example.warb.JPAEntities;
 
-import javax.persistence.*;
+import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+@Component
 @Entity
 @Table(name = "_user")
 public class User {

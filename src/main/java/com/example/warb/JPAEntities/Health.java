@@ -1,7 +1,9 @@
 package com.example.warb.JPAEntities;
 
-import javax.persistence.*;
+import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+@Component
 @Entity
 @Table(name = "health")
 public class Health {
@@ -27,7 +29,7 @@ public class Health {
 
     @Column(name = "Other", length = 100)
     private String other;
-
+    @Transient
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Id_Stu")
     private Student idStu;
@@ -43,9 +45,6 @@ public class Health {
 
     @Column(name = "urinary_disoder")
     private String urinaryDisoder1;
-
-    @Column(name = "idStu", nullable = false)
-    private Integer idStu1;
 
     public Integer getId() {
         return id;
@@ -141,14 +140,6 @@ public class Health {
 
     public void setUrinaryDisoder1(String urinaryDisoder1) {
         this.urinaryDisoder1 = urinaryDisoder1;
-    }
-
-    public Integer getIdStu1() {
-        return idStu1;
-    }
-
-    public void setIdStu1(Integer idStu1) {
-        this.idStu1 = idStu1;
     }
 
 }

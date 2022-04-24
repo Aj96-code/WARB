@@ -1,5 +1,6 @@
 module com.example.warb {
     requires javafx.controls;
+    requires javafx.base;
     requires javafx.fxml;
     requires javafx.web;
     requires javassist;
@@ -46,7 +47,8 @@ module com.example.warb {
     opens com.example.warb.SpringConfiuartion to spring.core, spring.beans, spring.context, spring.data.jpa;
     opens com.example.warb.Repositories to spring.core, spring.beans, spring.context, spring.data.jpa;
     opens com.example.warb.JPAEntities to  spring.core, spring.beans, spring.context, spring.data.jpa, org.hibernate.orm.core;
-    opens com.example.warb.FXMLControllers to javafx.fxml,spring.core, spring.beans, spring.context, spring.data.jpa ;
+    opens com.example.warb.FXMLControllers to  spring.core, spring.beans, spring.context, spring.data.jpa,
+            org.hibernate.orm.core, javafx.base, javafx.fxml, javafx.controls, javafx.graphics ;
     exports com.example.warb;
     exports com.example.warb.FXMLControllers;
     exports com.example.warb.JPAEntities;

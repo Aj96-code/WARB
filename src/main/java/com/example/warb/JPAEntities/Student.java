@@ -1,10 +1,10 @@
 package com.example.warb.JPAEntities;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
+@Component
 @Entity
 @Table(name = "student")
 public class Student {
@@ -79,15 +79,6 @@ public class Student {
     @Lob
     @Column(name = "ERN")
     private String ern;
-
-    @OneToMany(mappedBy = "idStu")
-    private Set<Attendance> attendances = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "idStu")
-    private Set<Health> health = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "idStu")
-    private Set<Assessment> assessments = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -271,30 +262,6 @@ public class Student {
 
     public void setErn(String ern) {
         this.ern = ern;
-    }
-
-    public Set<Attendance> getAttendances() {
-        return attendances;
-    }
-
-    public void setAttendances(Set<Attendance> attendances) {
-        this.attendances = attendances;
-    }
-
-    public Set<Health> getHealth() {
-        return health;
-    }
-
-    public void setHealth(Set<Health> health) {
-        this.health = health;
-    }
-
-    public Set<Assessment> getAssessments() {
-        return assessments;
-    }
-
-    public void setAssessments(Set<Assessment> assessments) {
-        this.assessments = assessments;
     }
 
 }

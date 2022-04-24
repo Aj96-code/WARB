@@ -1,7 +1,9 @@
 package com.example.warb.JPAEntities;
 
-import javax.persistence.*;
+import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+@Component
 @Entity
 @Table(name = "attendance")
 public class Attendance {
@@ -49,6 +51,31 @@ public class Attendance {
     @Column(name = "Year5_Term1")
     private Integer year5Term1;
 
+    @Override
+    public String toString() {
+        return
+                "Student Id: " + idStu +
+                ", Grade1Term1: " + year1Term1 +
+                ", Grade1Term2: " + year1Term2 +
+                ", Grade1Term3: " + year1Term3 +
+                ", Grade2Term1: " + year2Term1 +
+                ", Grade2Term2: " + year2Term2 +
+                ", Grade2Term3: " + year2Term3 +
+                ", Grade3Term1: " + year3Term1 +
+                ", Grade3Term2: " + year3Term2 +
+                ", Grade3Term3: " + year3Term3 +
+                ", Grade4Term1: " + year4Term1 +
+                ", Grade4Term2: " + year4Term2 +
+                ", Grade4Term3: " + year4Term3 +
+                ", Grade5Term1: " + year5Term1 +
+                ", Grade5Term2: " + year5Term2 +
+                ", Grade5Term3: " + year5Term3 +
+                ", Grade6Term1: " + year6Term1 +
+                ", Grade6Term2: " + year6Term2 +
+                ", Grade6Term3: " + year6Term3 +
+                ", Id:" + id;
+    }
+
     @Column(name = "Year5_Term2")
     private Integer year5Term2;
 
@@ -64,66 +91,9 @@ public class Attendance {
     @Column(name = "Year6_Term3")
     private Integer year6Term3;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Id_Stu")
-    private Student idStu;
 
-    @Column(name = "year1term1")
-    private Integer year1term1;
-
-    @Column(name = "year1term2")
-    private Integer year1term2;
-
-    @Column(name = "year1term3")
-    private Integer year1term3;
-
-    @Column(name = "year2term1")
-    private Integer year2term1;
-
-    @Column(name = "year2term2")
-    private Integer year2term2;
-
-    @Column(name = "year2term3")
-    private Integer year2term3;
-
-    @Column(name = "year3term1")
-    private Integer year3term1;
-
-    @Column(name = "year3term2")
-    private Integer year3term2;
-
-    @Column(name = "year3term3")
-    private Integer year3term3;
-
-    @Column(name = "year4term1")
-    private Integer year4term1;
-
-    @Column(name = "year4term2")
-    private Integer year4term2;
-
-    @Column(name = "year4term3")
-    private Integer year4term3;
-
-    @Column(name = "year5term1")
-    private Integer year5term1;
-
-    @Column(name = "year5term2")
-    private Integer year5term2;
-
-    @Column(name = "year5term3")
-    private Integer year5term3;
-
-    @Column(name = "year6term1")
-    private Integer year6term1;
-
-    @Column(name = "year6term2")
-    private Integer year6term2;
-
-    @Column(name = "year6term3")
-    private Integer year6term3;
-
-    @Column(name = "idStu", nullable = false)
-    private Integer idStu1;
+    @Column(name = "Id_Stu")
+    private Integer idStu;
 
     public Integer getId() {
         return id;
@@ -276,165 +246,11 @@ public class Attendance {
     public void setYear6Term3(Integer year6Term3) {
         this.year6Term3 = year6Term3;
     }
-
-    public Student getIdStu() {
+    public Integer getIdStu() {
         return idStu;
     }
-
-    public void setIdStu(Student idStu) {
+    public void setIdStu(Integer idStu) {
         this.idStu = idStu;
-    }
-
-    public Integer getYear1term1() {
-        return year1term1;
-    }
-
-    public void setYear1term1(Integer year1term1) {
-        this.year1term1 = year1term1;
-    }
-
-    public Integer getYear1term2() {
-        return year1term2;
-    }
-
-    public void setYear1term2(Integer year1term2) {
-        this.year1term2 = year1term2;
-    }
-
-    public Integer getYear1term3() {
-        return year1term3;
-    }
-
-    public void setYear1term3(Integer year1term3) {
-        this.year1term3 = year1term3;
-    }
-
-    public Integer getYear2term1() {
-        return year2term1;
-    }
-
-    public void setYear2term1(Integer year2term1) {
-        this.year2term1 = year2term1;
-    }
-
-    public Integer getYear2term2() {
-        return year2term2;
-    }
-
-    public void setYear2term2(Integer year2term2) {
-        this.year2term2 = year2term2;
-    }
-
-    public Integer getYear2term3() {
-        return year2term3;
-    }
-
-    public void setYear2term3(Integer year2term3) {
-        this.year2term3 = year2term3;
-    }
-
-    public Integer getYear3term1() {
-        return year3term1;
-    }
-
-    public void setYear3term1(Integer year3term1) {
-        this.year3term1 = year3term1;
-    }
-
-    public Integer getYear3term2() {
-        return year3term2;
-    }
-
-    public void setYear3term2(Integer year3term2) {
-        this.year3term2 = year3term2;
-    }
-
-    public Integer getYear3term3() {
-        return year3term3;
-    }
-
-    public void setYear3term3(Integer year3term3) {
-        this.year3term3 = year3term3;
-    }
-
-    public Integer getYear4term1() {
-        return year4term1;
-    }
-
-    public void setYear4term1(Integer year4term1) {
-        this.year4term1 = year4term1;
-    }
-
-    public Integer getYear4term2() {
-        return year4term2;
-    }
-
-    public void setYear4term2(Integer year4term2) {
-        this.year4term2 = year4term2;
-    }
-
-    public Integer getYear4term3() {
-        return year4term3;
-    }
-
-    public void setYear4term3(Integer year4term3) {
-        this.year4term3 = year4term3;
-    }
-
-    public Integer getYear5term1() {
-        return year5term1;
-    }
-
-    public void setYear5term1(Integer year5term1) {
-        this.year5term1 = year5term1;
-    }
-
-    public Integer getYear5term2() {
-        return year5term2;
-    }
-
-    public void setYear5term2(Integer year5term2) {
-        this.year5term2 = year5term2;
-    }
-
-    public Integer getYear5term3() {
-        return year5term3;
-    }
-
-    public void setYear5term3(Integer year5term3) {
-        this.year5term3 = year5term3;
-    }
-
-    public Integer getYear6term1() {
-        return year6term1;
-    }
-
-    public void setYear6term1(Integer year6term1) {
-        this.year6term1 = year6term1;
-    }
-
-    public Integer getYear6term2() {
-        return year6term2;
-    }
-
-    public void setYear6term2(Integer year6term2) {
-        this.year6term2 = year6term2;
-    }
-
-    public Integer getYear6term3() {
-        return year6term3;
-    }
-
-    public void setYear6term3(Integer year6term3) {
-        this.year6term3 = year6term3;
-    }
-
-    public Integer getIdStu1() {
-        return idStu1;
-    }
-
-    public void setIdStu1(Integer idStu1) {
-        this.idStu1 = idStu1;
     }
 
 }
