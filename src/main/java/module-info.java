@@ -7,7 +7,6 @@ module com.example.warb {
     requires java.management;
     requires java.base;
     requires java.net.http;
-    requires jdk.internal.opt;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -42,13 +41,15 @@ module com.example.warb {
     requires net.bytebuddy;
     requires org.hibernate.orm.core;
     requires org.hibernate.commons.annotations;
+    requires org.junit.jupiter.api;
+    requires org.jetbrains.annotations;
 
     opens com.example.warb to spring.core, spring.beans, spring.context, spring.data.jpa;
     opens com.example.warb.SpringConfiuartion to spring.core, spring.beans, spring.context, spring.data.jpa;
     opens com.example.warb.Repositories to spring.core, spring.beans, spring.context, spring.data.jpa;
-    opens com.example.warb.JPAEntities to  spring.core, spring.beans, spring.context, spring.data.jpa, org.hibernate.orm.core;
-    opens com.example.warb.FXMLControllers to  spring.core, spring.beans, spring.context, spring.data.jpa,
-            org.hibernate.orm.core, javafx.base, javafx.fxml, javafx.controls, javafx.graphics ;
+    opens com.example.warb.JPAEntities to spring.core, spring.beans, spring.context, spring.data.jpa, org.hibernate.orm.core;
+    opens com.example.warb.FXMLControllers to spring.core, spring.beans, spring.context, spring.data.jpa,
+            org.hibernate.orm.core, javafx.base, javafx.fxml, javafx.controls, javafx.graphics;
     exports com.example.warb;
     exports com.example.warb.FXMLControllers;
     exports com.example.warb.JPAEntities;

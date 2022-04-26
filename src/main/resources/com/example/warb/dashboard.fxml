@@ -4,17 +4,16 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-
 <Pane prefHeight="491.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.warb.FXMLControllers.DashboardController">
     <children>
-      <ImageView fitHeight="295.0" fitWidth="758.0" layoutX="20.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/school.png" />
-         </image>
-      </ImageView>
-      <Label id="dateTime" layoutX="20.0" layoutY="14.0" text="test" />
-
+        <ImageView fitHeight="295.0" fitWidth="758.0" layoutX="20.0" layoutY="33.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../../../img/school.png"/>
+            </image>
+        </ImageView>
+        <Label id="dateTime" layoutX="20.0" layoutY="14.0" text="test"/>
 
 
     </children>

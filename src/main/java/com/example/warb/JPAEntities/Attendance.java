@@ -3,6 +3,7 @@ package com.example.warb.JPAEntities;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+
 @Component
 @Entity
 @Table(name = "attendance")
@@ -17,7 +18,6 @@ public class Attendance {
 
     @Column(name = "Year1_Term2")
     private Integer year1Term2;
-
     @Column(name = "Year1_Term3")
     private Integer year1Term3;
 
@@ -55,25 +55,25 @@ public class Attendance {
     public String toString() {
         return
                 "Student Id: " + idStu +
-                ", Grade1Term1: " + year1Term1 +
-                ", Grade1Term2: " + year1Term2 +
-                ", Grade1Term3: " + year1Term3 +
-                ", Grade2Term1: " + year2Term1 +
-                ", Grade2Term2: " + year2Term2 +
-                ", Grade2Term3: " + year2Term3 +
-                ", Grade3Term1: " + year3Term1 +
-                ", Grade3Term2: " + year3Term2 +
-                ", Grade3Term3: " + year3Term3 +
-                ", Grade4Term1: " + year4Term1 +
-                ", Grade4Term2: " + year4Term2 +
-                ", Grade4Term3: " + year4Term3 +
-                ", Grade5Term1: " + year5Term1 +
-                ", Grade5Term2: " + year5Term2 +
-                ", Grade5Term3: " + year5Term3 +
-                ", Grade6Term1: " + year6Term1 +
-                ", Grade6Term2: " + year6Term2 +
-                ", Grade6Term3: " + year6Term3 +
-                ", Id:" + id;
+                        ", Grade1Term1: " + year1Term1 +
+                        ", Grade1Term2: " + year1Term2 +
+                        ", Grade1Term3: " + year1Term3 +
+                        ", Grade2Term1: " + year2Term1 +
+                        ", Grade2Term2: " + year2Term2 +
+                        ", Grade2Term3: " + year2Term3 +
+                        ", Grade3Term1: " + year3Term1 +
+                        ", Grade3Term2: " + year3Term2 +
+                        ", Grade3Term3: " + year3Term3 +
+                        ", Grade4Term1: " + year4Term1 +
+                        ", Grade4Term2: " + year4Term2 +
+                        ", Grade4Term3: " + year4Term3 +
+                        ", Grade5Term1: " + year5Term1 +
+                        ", Grade5Term2: " + year5Term2 +
+                        ", Grade5Term3: " + year5Term3 +
+                        ", Grade6Term1: " + year6Term1 +
+                        ", Grade6Term2: " + year6Term2 +
+                        ", Grade6Term3: " + year6Term3 +
+                        ", Id:" + id;
     }
 
     @Column(name = "Year5_Term2")
@@ -246,9 +246,11 @@ public class Attendance {
     public void setYear6Term3(Integer year6Term3) {
         this.year6Term3 = year6Term3;
     }
+
     public Integer getIdStu() {
         return idStu;
     }
+
     public void setIdStu(Integer idStu) {
         this.idStu = idStu;
     }

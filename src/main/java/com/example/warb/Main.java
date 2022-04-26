@@ -1,24 +1,17 @@
 package com.example.warb;
 
-import com.example.warb.FXMLControllers.HelloController;
-import com.example.warb.Repositories.AttendanceRepository;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -30,7 +23,8 @@ public class Main extends Application {
     private ConfigurableApplicationContext SpringContext;
 
     private Parent Root;
-    double x,y;
+    double x, y;
+
     @Override
     public void init() throws IOException {
         SpringContext = SpringApplication.run(Main.class);
@@ -53,7 +47,7 @@ public class Main extends Application {
             y = event.getSceneY();
         });
 
-        Root.setOnMouseDragged(event ->{
+        Root.setOnMouseDragged(event -> {
             stage.setX(event.getScreenX() - x);
             stage.setY(event.getScreenY() - y);
         });

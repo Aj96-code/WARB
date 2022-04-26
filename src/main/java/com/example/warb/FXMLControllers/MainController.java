@@ -1,37 +1,31 @@
 package com.example.warb.FXMLControllers;
 
-import com.example.warb.Main;
-import com.example.warb.SpringConfiuartion.SpringConfiguration;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
-import javafx.util.Callback;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-public class MainController implements Initializable{
+
+public class MainController implements Initializable {
     private ConfigurableApplicationContext SpringContext;
     @Autowired
     private BeanFactory BeanContainer;
 
     @FXML
     private StackPane contentArea;
+
     @Override
-     public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
 
 
         try {
@@ -100,7 +94,6 @@ public class MainController implements Initializable{
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
-
 
 
 }
