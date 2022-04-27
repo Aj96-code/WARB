@@ -9,16 +9,16 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 @SpringBootApplication
-@ComponentScan
-@EnableJpaRepositories("com.example.warb.Repositories")
+@ComponentScan(basePackages = { "com.example.warb.*" })
+@EntityScan("com.example.warb.*")
 public class Main extends Application {
     private ConfigurableApplicationContext SpringContext;
 
@@ -59,7 +59,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-
         Application.launch(args);
     }
 

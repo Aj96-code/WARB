@@ -13,13 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.controlsfx.control.tableview2.TableView2;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
-import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Optional;
@@ -66,7 +63,6 @@ public class AttendanceController {
     ObservableList<Attendance> AttendanceList = FXCollections.observableArrayList();
     Alert Dialog;
 
-
     @FXML
     public void btnSaveClick(ActionEvent event) {
         if (TbId.getText() != "") {
@@ -89,31 +85,18 @@ public class AttendanceController {
         return AttendanceList = FXCollections.observableArrayList(AttendanceRepo.findAll());
     }
 
-    private @NotNull Student getStudentById(int Id) {
+    private  Student getStudentById(int Id) {
         return StudentRepo.findById(Id).get();
     }
 
-    @Contract(pure = true)
-    private TextField @NotNull [] getAttendanceTextFields() {
+    private TextField  [] getAttendanceTextFields() {
         TextField[] TbArray = new TextField[18];
-        TbArray[0] = TbGrade1Term1;
-        TbArray[1] = TbGrade1Term2;
-        TbArray[2] = TbGrade1Term3;
-        TbArray[3] = TbGrade2Term1;
-        TbArray[4] = TbGrade2Term2;
-        TbArray[5] = TbGrade2Term3;
-        TbArray[6] = TbGrade3Term1;
-        TbArray[7] = TbGrade3Term2;
-        TbArray[8] = TbGrade3Term3;
-        TbArray[9] = TbGrade4Term1;
-        TbArray[10] = TbGrade4Term2;
-        TbArray[11] = TbGrade4Term3;
-        TbArray[12] = TbGrade5Term1;
-        TbArray[13] = TbGrade5Term2;
-        TbArray[14] = TbGrade5Term3;
-        TbArray[15] = TbGrade6Term1;
-        TbArray[16] = TbGrade6Term2;
-        TbArray[17] = TbGrade6Term3;
+        TbArray[0] = TbGrade1Term1; TbArray[1] = TbGrade1Term2;TbArray[2] = TbGrade1Term3;
+        TbArray[3] = TbGrade2Term1; TbArray[4] = TbGrade2Term2;TbArray[5] = TbGrade2Term3;
+        TbArray[6] = TbGrade3Term1; TbArray[7] = TbGrade3Term2;TbArray[8] = TbGrade3Term3;
+        TbArray[9] = TbGrade4Term1; TbArray[10] = TbGrade4Term2;TbArray[11] = TbGrade4Term3;
+        TbArray[12] = TbGrade5Term1; TbArray[13] = TbGrade5Term2;TbArray[14] = TbGrade5Term3;
+        TbArray[15] = TbGrade6Term1; TbArray[16] = TbGrade6Term2;TbArray[17] = TbGrade6Term3;
         return TbArray;
     }
 
@@ -130,7 +113,6 @@ public class AttendanceController {
 
     @Autowired
     Attendance NewAttendance;
-
     public boolean validateForm() {
         return TbGrade1Term1.getText() != "" || TbGrade1Term2.getText() != ""
                 || TbGrade1Term3.getText() != "" || TbGrade2Term1.getText() != ""
@@ -176,23 +158,40 @@ public class AttendanceController {
             if (Stud_Id != 0) {
 
                 NewAttendance.setIdStu(Stud_Id);
-                NewAttendance.setYear1Term1(Integer.parseInt(TbGrade1Term1.getText() == "" ? "0" : TbGrade1Term1.getText()));
-                NewAttendance.setYear1Term2(Integer.parseInt(TbGrade1Term2.getText() == "" ? "0" : TbGrade1Term2.getText()));
-                NewAttendance.setYear1Term3(Integer.parseInt(TbGrade1Term3.getText() == "" ? "0" : TbGrade1Term3.getText()));
-                NewAttendance.setYear2Term1(Integer.parseInt(TbGrade2Term1.getText() == "" ? "0" : TbGrade2Term1.getText()));
-                NewAttendance.setYear2Term2(Integer.parseInt(TbGrade2Term2.getText() == "" ? "0" : TbGrade2Term2.getText()));
-                NewAttendance.setYear2Term3(Integer.parseInt(TbGrade2Term3.getText() == "" ? "0" : TbGrade2Term3.getText()));
-                NewAttendance.setYear3Term1(Integer.parseInt(TbGrade3Term1.getText() == "" ? "0" : TbGrade3Term1.getText()));
-                NewAttendance.setYear3Term2(Integer.parseInt(TbGrade3Term2.getText() == "" ? "0" : TbGrade3Term2.getText()));
-                NewAttendance.setYear3Term3(Integer.parseInt(TbGrade3Term3.getText() == "" ? "0" : TbGrade3Term3.getText()));
-                NewAttendance.setYear4Term1(Integer.parseInt(TbGrade4Term1.getText() == "" ? "0" : TbGrade4Term1.getText()));
-                NewAttendance.setYear4Term2(Integer.parseInt(TbGrade4Term2.getText() == "" ? "0" : TbGrade4Term2.getText()));
-                NewAttendance.setYear4Term3(Integer.parseInt(TbGrade4Term3.getText() == "" ? "0" : TbGrade4Term3.getText()));
-                NewAttendance.setYear5Term1(Integer.parseInt(TbGrade5Term1.getText() == "" ? "0" : TbGrade5Term1.getText()));
-                NewAttendance.setYear5Term2(Integer.parseInt(TbGrade5Term2.getText() == "" ? "0" : TbGrade5Term2.getText()));
-                NewAttendance.setYear5Term3(Integer.parseInt(TbGrade5Term3.getText() == "" ? "0" : TbGrade5Term3.getText()));
-                NewAttendance.setYear6Term1(Integer.parseInt(TbGrade6Term1.getText() == "" ? "0" : TbGrade6Term1.getText()));
-                NewAttendance.setYear6Term2(Integer.parseInt(TbGrade6Term2.getText() == "" ? "0" : TbGrade6Term2.getText()));
+                NewAttendance.setYear1Term1(Integer.parseInt(TbGrade1Term1.getText() == "" ? "0"
+                        : TbGrade1Term1.getText()));
+                NewAttendance.setYear1Term2(Integer.parseInt(TbGrade1Term2.getText() == "" ? "0"
+                        : TbGrade1Term2.getText()));
+                NewAttendance.setYear1Term3(Integer.parseInt(TbGrade1Term3.getText() == "" ? "0"
+                        : TbGrade1Term3.getText()));
+                NewAttendance.setYear2Term1(Integer.parseInt(TbGrade2Term1.getText() == "" ? "0"
+                        : TbGrade2Term1.getText()));
+                NewAttendance.setYear2Term2(Integer.parseInt(TbGrade2Term2.getText() == "" ? "0"
+                        : TbGrade2Term2.getText()));
+                NewAttendance.setYear2Term3(Integer.parseInt(TbGrade2Term3.getText() == "" ? "0"
+                        : TbGrade2Term3.getText()));
+                NewAttendance.setYear3Term1(Integer.parseInt(TbGrade3Term1.getText() == "" ? "0"
+                        : TbGrade3Term1.getText()));
+                NewAttendance.setYear3Term2(Integer.parseInt(TbGrade3Term2.getText() == "" ? "0"
+                        : TbGrade3Term2.getText()));
+                NewAttendance.setYear3Term3(Integer.parseInt(TbGrade3Term3.getText() == "" ? "0"
+                        : TbGrade3Term3.getText()));
+                NewAttendance.setYear4Term1(Integer.parseInt(TbGrade4Term1.getText() == "" ? "0"
+                        : TbGrade4Term1.getText()));
+                NewAttendance.setYear4Term2(Integer.parseInt(TbGrade4Term2.getText() == "" ? "0"
+                        : TbGrade4Term2.getText()));
+                NewAttendance.setYear4Term3(Integer.parseInt(TbGrade4Term3.getText() == "" ? "0"
+                        : TbGrade4Term3.getText()));
+                NewAttendance.setYear5Term1(Integer.parseInt(TbGrade5Term1.getText() == "" ? "0"
+                        : TbGrade5Term1.getText()));
+                NewAttendance.setYear5Term2(Integer.parseInt(TbGrade5Term2.getText() == "" ? "0"
+                        : TbGrade5Term2.getText()));
+                NewAttendance.setYear5Term3(Integer.parseInt(TbGrade5Term3.getText() == "" ? "0"
+                        : TbGrade5Term3.getText()));
+                NewAttendance.setYear6Term1(Integer.parseInt(TbGrade6Term1.getText() == "" ? "0"
+                        : TbGrade6Term1.getText()));
+                NewAttendance.setYear6Term2(Integer.parseInt(TbGrade6Term2.getText() == "" ? "0"
+                        : TbGrade6Term2.getText()));
                 NewAttendance.setYear6Term3(Integer.parseInt(TbGrade6Term3.getText() == "" ? "0" : TbGrade6Term3.getText()));
 
 
@@ -350,7 +349,7 @@ public class AttendanceController {
         loadAttendanceProfileImage();
     }
 
-    private void loadStudentInformation(Attendance SelectedObject) {
+    private void loadStudentInformation( Attendance SelectedObject) {
         TbId.setText(String.valueOf(SelectedObject.getIdStu()));
         TbFirstName.setText(StudentRepo.findById(SelectedObject.getIdStu()).get().getFirstName());
         TbMiddleName.setText(StudentRepo.findById(SelectedObject.getIdStu()).get().getMiddleName());
@@ -358,7 +357,7 @@ public class AttendanceController {
     }
 
 
-    private void loadStudentInformation(Student SelectObject) {
+    private void loadStudentInformation( Student SelectObject) {
         TbId.setText(String.valueOf(SelectObject.getId()));
         TbFirstName.setText(SelectObject.getFirstName());
         TbMiddleName.setText(SelectObject.getMiddleName());
@@ -375,6 +374,7 @@ public class AttendanceController {
             ByteArrayInputStream ByteImage = new ByteArrayInputStream(imageBytes);
             ProfilePicture.setImage(new Image(ByteImage));
         } catch (Exception E) {
+            System.out.println("No Profile Image Found");
         }
     }
 
@@ -400,7 +400,7 @@ public class AttendanceController {
         }
     }
 
-    private TableColumn setCellValueFactoryForAttendanceTableColumn() {
+    private  TableColumn setCellValueFactoryForAttendanceTableColumn() {
         TableColumn<Attendance, Integer> ColStudId = new TableColumn<>("Student Id");
         ColStudId.setCellValueFactory(new PropertyValueFactory<>("idStu"));
         return ColStudId;
@@ -422,8 +422,8 @@ public class AttendanceController {
             ByteArrayInputStream ByteImage = new ByteArrayInputStream(imageBytes);
             ProfilePicture.setImage(new Image(ByteImage));
         } catch (Exception E) {
+            System.out.println("No Profile Image Found");
         }
     }
-
 
 }

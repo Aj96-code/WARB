@@ -1,8 +1,8 @@
 package com.example.warb.JPAEntities;
 
+import javax.persistence.*;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 @Component

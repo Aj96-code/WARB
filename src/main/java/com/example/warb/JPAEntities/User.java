@@ -1,8 +1,9 @@
 package com.example.warb.JPAEntities;
 
-import org.springframework.stereotype.Component;
 
+import org.springframework.stereotype.Component;
 import javax.persistence.*;
+
 
 @Component
 @Entity
