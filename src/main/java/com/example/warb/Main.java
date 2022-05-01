@@ -12,18 +12,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.example.warb.*" })
+@EnableJpaRepositories("com.example.warb.Repositories")
 @EntityScan("com.example.warb.*")
 public class Main extends Application {
-    private ConfigurableApplicationContext SpringContext;
+private ConfigurableApplicationContext SpringContext;
 
-    private Parent Root;
-    double x, y;
+private Parent Root;
+double x, y;
 
     @Override
     public void init() throws IOException {

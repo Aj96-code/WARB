@@ -1,11 +1,13 @@
 package com.example.warb.JPAEntities;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
 @Component
 @Entity
+@DynamicUpdate
 @Table(name = "attendance")
 public class Attendance {
     @Id

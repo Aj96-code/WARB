@@ -15,39 +15,33 @@ import javafx.scene.image.ImageView;
 import org.controlsfx.control.tableview2.TableView2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.io.ByteArrayInputStream;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Optional;
-
 @Component
 public class AttendanceController {
-
     @Autowired
     private StudentRepository StudentRepo;
     @Autowired
     private AttendanceRepository AttendanceRepo;
     @FXML
-    private TextField TbGrade1Term1, TbGrade1Term2, TbGrade1Term3;
+    public TextField TbGrade1Term1, TbGrade1Term2, TbGrade1Term3;
     @FXML
-    private TextField TbGrade2Term1, TbGrade2Term2, TbGrade2Term3;
+    public  TextField TbGrade2Term1, TbGrade2Term2, TbGrade2Term3;
     @FXML
-    private TextField TbGrade3Term1, TbGrade3Term2, TbGrade3Term3;
+    public  TextField TbGrade3Term1, TbGrade3Term2, TbGrade3Term3;
     @FXML
-    private TextField TbGrade4Term1, TbGrade4Term2, TbGrade4Term3;
+    public  TextField TbGrade4Term1, TbGrade4Term2, TbGrade4Term3;
     @FXML
-    private TextField TbGrade5Term1, TbGrade5Term2, TbGrade5Term3;
+    public  TextField TbGrade5Term1, TbGrade5Term2, TbGrade5Term3;
     @FXML
-    private TextField TbGrade6Term1, TbGrade6Term2, TbGrade6Term3;
+    public  TextField TbGrade6Term1, TbGrade6Term2, TbGrade6Term3;
     @FXML
     private TableView<Student> StudentTable;
     @FXML
     private TextField TbId, TbFirstName, TbMiddleName, TbLastName;
-
     @FXML
     private TableView2<Attendance> AttendanceTable;
-
     private TextField[] AttendanceTextFields = new TextField[18];
     private final TableColumn<Student, String> ColFirstName =
             new TableColumn<>("First Name");
@@ -65,7 +59,7 @@ public class AttendanceController {
 
     @FXML
     public void btnSaveClick(ActionEvent event) {
-        if (TbId.getText() != "") {
+        if (!TbId.getText().equals("")) {
             saveAttendanceToDataBase();
         } else {
             Dialog = new Alert(Alert.AlertType.WARNING);
@@ -89,6 +83,12 @@ public class AttendanceController {
         return StudentRepo.findById(Id).get();
     }
 
+    public void populateAttendance(){
+        AttendanceTextFields = getAttendanceTextFields();
+        for(TextField Field : AttendanceTextFields){
+            Field.setText("1");
+        }
+    }
     private TextField  [] getAttendanceTextFields() {
         TextField[] TbArray = new TextField[18];
         TbArray[0] = TbGrade1Term1; TbArray[1] = TbGrade1Term2;TbArray[2] = TbGrade1Term3;
@@ -114,15 +114,15 @@ public class AttendanceController {
     @Autowired
     Attendance NewAttendance;
     public boolean validateForm() {
-        return TbGrade1Term1.getText() != "" || TbGrade1Term2.getText() != ""
-                || TbGrade1Term3.getText() != "" || TbGrade2Term1.getText() != ""
-                || TbGrade2Term2.getText() != "" || TbGrade2Term3.getText() != ""
-                || TbGrade3Term1.getText() != "" || TbGrade3Term2.getText() != ""
-                || TbGrade3Term3.getText() != "" || TbGrade4Term1.getText() != ""
-                || TbGrade4Term2.getText() != "" || TbGrade4Term3.getText() != ""
-                || TbGrade5Term1.getText() != "" || TbGrade5Term2.getText() != ""
-                || TbGrade5Term3.getText() != "" || TbGrade6Term1.getText() != ""
-                || TbGrade6Term2.getText() != "" || TbGrade6Term3.getText() != "";
+        return     !TbGrade1Term1.getText().equals("") || !TbGrade1Term2.getText().equals("")
+                || !TbGrade1Term3.getText().equals("") || !TbGrade2Term1.getText().equals("")
+                || !TbGrade2Term2.getText().equals("") || !TbGrade2Term3.getText().equals("")
+                || !TbGrade3Term1.getText().equals("") || !TbGrade3Term2.getText().equals("")
+                || !TbGrade3Term3.getText().equals("") || !TbGrade4Term1.getText().equals("")
+                || !TbGrade4Term2.getText().equals("") || !TbGrade4Term3.getText().equals("")
+                || !TbGrade5Term1.getText().equals("") || !TbGrade5Term2.getText().equals("")
+                || !TbGrade5Term3.getText().equals("") || !TbGrade6Term1.getText().equals("")
+                || !TbGrade6Term2.getText().equals("") || !TbGrade6Term3.getText().equals("");
     }
 
     private void setAlert(Alert alert, String title,String message, String header){
@@ -158,41 +158,41 @@ public class AttendanceController {
             if (Stud_Id != 0) {
 
                 NewAttendance.setIdStu(Stud_Id);
-                NewAttendance.setYear1Term1(Integer.parseInt(TbGrade1Term1.getText() == "" ? "0"
+                NewAttendance.setYear1Term1(Integer.parseInt(TbGrade1Term1.getText().equals("") ? "0"
                         : TbGrade1Term1.getText()));
-                NewAttendance.setYear1Term2(Integer.parseInt(TbGrade1Term2.getText() == "" ? "0"
+                NewAttendance.setYear1Term2(Integer.parseInt(TbGrade1Term2.getText().equals("") ? "0"
                         : TbGrade1Term2.getText()));
-                NewAttendance.setYear1Term3(Integer.parseInt(TbGrade1Term3.getText() == "" ? "0"
+                NewAttendance.setYear1Term3(Integer.parseInt(TbGrade1Term3.getText().equals("") ? "0"
                         : TbGrade1Term3.getText()));
-                NewAttendance.setYear2Term1(Integer.parseInt(TbGrade2Term1.getText() == "" ? "0"
+                NewAttendance.setYear2Term1(Integer.parseInt(TbGrade2Term1.getText().equals("") ? "0"
                         : TbGrade2Term1.getText()));
-                NewAttendance.setYear2Term2(Integer.parseInt(TbGrade2Term2.getText() == "" ? "0"
+                NewAttendance.setYear2Term2(Integer.parseInt(TbGrade2Term2.getText().equals("") ? "0"
                         : TbGrade2Term2.getText()));
-                NewAttendance.setYear2Term3(Integer.parseInt(TbGrade2Term3.getText() == "" ? "0"
+                NewAttendance.setYear2Term3(Integer.parseInt(TbGrade2Term3.getText().equals("") ? "0"
                         : TbGrade2Term3.getText()));
-                NewAttendance.setYear3Term1(Integer.parseInt(TbGrade3Term1.getText() == "" ? "0"
+                NewAttendance.setYear3Term1(Integer.parseInt(TbGrade3Term1.getText().equals("") ? "0"
                         : TbGrade3Term1.getText()));
-                NewAttendance.setYear3Term2(Integer.parseInt(TbGrade3Term2.getText() == "" ? "0"
+                NewAttendance.setYear3Term2(Integer.parseInt(TbGrade3Term2.getText().equals("") ? "0"
                         : TbGrade3Term2.getText()));
-                NewAttendance.setYear3Term3(Integer.parseInt(TbGrade3Term3.getText() == "" ? "0"
+                NewAttendance.setYear3Term3(Integer.parseInt(TbGrade3Term3.getText().equals("") ? "0"
                         : TbGrade3Term3.getText()));
-                NewAttendance.setYear4Term1(Integer.parseInt(TbGrade4Term1.getText() == "" ? "0"
+                NewAttendance.setYear4Term1(Integer.parseInt(TbGrade4Term1.getText().equals("") ? "0"
                         : TbGrade4Term1.getText()));
-                NewAttendance.setYear4Term2(Integer.parseInt(TbGrade4Term2.getText() == "" ? "0"
+                NewAttendance.setYear4Term2(Integer.parseInt(TbGrade4Term2.getText().equals("") ? "0"
                         : TbGrade4Term2.getText()));
-                NewAttendance.setYear4Term3(Integer.parseInt(TbGrade4Term3.getText() == "" ? "0"
+                NewAttendance.setYear4Term3(Integer.parseInt(TbGrade4Term3.getText().equals("") ? "0"
                         : TbGrade4Term3.getText()));
-                NewAttendance.setYear5Term1(Integer.parseInt(TbGrade5Term1.getText() == "" ? "0"
+                NewAttendance.setYear5Term1(Integer.parseInt(TbGrade5Term1.getText().equals("")? "0"
                         : TbGrade5Term1.getText()));
-                NewAttendance.setYear5Term2(Integer.parseInt(TbGrade5Term2.getText() == "" ? "0"
+                NewAttendance.setYear5Term2(Integer.parseInt(TbGrade5Term2.getText().equals("") ? "0"
                         : TbGrade5Term2.getText()));
-                NewAttendance.setYear5Term3(Integer.parseInt(TbGrade5Term3.getText() == "" ? "0"
+                NewAttendance.setYear5Term3(Integer.parseInt(TbGrade5Term3.getText().equals("") ? "0"
                         : TbGrade5Term3.getText()));
-                NewAttendance.setYear6Term1(Integer.parseInt(TbGrade6Term1.getText() == "" ? "0"
+                NewAttendance.setYear6Term1(Integer.parseInt(TbGrade6Term1.getText().equals("") ? "0"
                         : TbGrade6Term1.getText()));
-                NewAttendance.setYear6Term2(Integer.parseInt(TbGrade6Term2.getText() == "" ? "0"
+                NewAttendance.setYear6Term2(Integer.parseInt(TbGrade6Term2.getText().equals("") ? "0"
                         : TbGrade6Term2.getText()));
-                NewAttendance.setYear6Term3(Integer.parseInt(TbGrade6Term3.getText() == "" ? "0" : TbGrade6Term3.getText()));
+                NewAttendance.setYear6Term3(Integer.parseInt(TbGrade6Term3.getText().equals("") ? "0" : TbGrade6Term3.getText()));
 
 
                 AttendanceRepo.saveAndFlush(NewAttendance);
@@ -379,7 +379,6 @@ public class AttendanceController {
     }
 
     private void loadStudentTable() {
-        ArrayList<Student> Students = (ArrayList<Student>) StudentRepo.findAll();
         setCellValueFactoryForStudentTableColumn();
         StudentTable.getColumns().addAll(ColID, ColFirstName, ColMiddleName, ColLastName);
         StudentTable.setItems(getListOfStudents());

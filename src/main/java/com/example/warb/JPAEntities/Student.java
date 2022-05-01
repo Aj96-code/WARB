@@ -1,12 +1,15 @@
 package com.example.warb.JPAEntities;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 @Component
 @Entity
+@DynamicUpdate
 @Table(name = "student")
 public class Student {
     @Id
