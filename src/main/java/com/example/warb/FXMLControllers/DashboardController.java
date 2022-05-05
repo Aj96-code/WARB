@@ -1,7 +1,9 @@
 package com.example.warb.FXMLControllers;
 
+import com.example.warb.JPAEntities.User;
 import com.example.warb.Repositories.StudentRepository;
 import com.example.warb.Repositories.UserRepository;
+import com.example.warb.Services.PassingUserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,14 +19,16 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@Component
+@Controller
 public class DashboardController implements Initializable {
+    public Label LblUserName;
     @Autowired
     private BeanFactory BeanContainer;
     double AmountOfStudent = 0,AmountOfUser = 0;
@@ -44,6 +48,9 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        PassingUserService Passing = PassingUserService.getInstance();
+        User CurrentUser = Passing.getUser();
+        LblUserName.setText(CurrentUser.getFirstName());
         AmountOfStudent = StudentRepo.findAll().size();
         AmountOfUser = UserRepo.findAll().size();
         StudentCount.setText(String.valueOf(Integer.valueOf((int) AmountOfStudent)));

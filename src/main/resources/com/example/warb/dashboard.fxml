@@ -61,7 +61,7 @@
                <Font name="System Bold" size="24.0" />
             </font>
          </Label>
-          <Label fx:id="LblAdmin" text="Admin">
+          <Label fx:id="LblUserName" text="Admin">
             <font>
                <Font name="System Bold" size="24.0" />
             </font>

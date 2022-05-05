@@ -14,11 +14,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.controlsfx.control.tableview2.TableView2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+
 import java.io.ByteArrayInputStream;
 import java.util.Base64;
 import java.util.Optional;
-@Component
+@Controller
 public class AttendanceController {
     @Autowired
     private StudentRepository StudentRepo;
@@ -71,25 +72,19 @@ public class AttendanceController {
     }
 
 
-    private ObservableList<Student> getListOfStudents() {
+    public ObservableList<Student> getListOfStudents() {
         return StudentList = FXCollections.observableArrayList(StudentRepo.findAll());
     }
 
-    private ObservableList<Attendance> getListOfAttendance() {
+    public ObservableList<Attendance> getListOfAttendance() {
         return AttendanceList = FXCollections.observableArrayList(AttendanceRepo.findAll());
     }
 
-    private  Student getStudentById(int Id) {
+    public  Student getStudentById(int Id) {
         return StudentRepo.findById(Id).get();
     }
 
-    public void populateAttendance(){
-        AttendanceTextFields = getAttendanceTextFields();
-        for(TextField Field : AttendanceTextFields){
-            Field.setText("1");
-        }
-    }
-    private TextField  [] getAttendanceTextFields() {
+    public TextField  [] getAttendanceTextFields() {
         TextField[] TbArray = new TextField[18];
         TbArray[0] = TbGrade1Term1; TbArray[1] = TbGrade1Term2;TbArray[2] = TbGrade1Term3;
         TbArray[3] = TbGrade2Term1; TbArray[4] = TbGrade2Term2;TbArray[5] = TbGrade2Term3;
@@ -100,15 +95,15 @@ public class AttendanceController {
         return TbArray;
     }
 
-    private void clearAttendanceTextField() {
+    public void clearAttendanceTextField() {
         try {
             for (TextField Field : AttendanceTextFields) {
                 if (Field.getText() != null)
                     Field.setText("");
             }
         } catch (NullPointerException NE) {
+            NE.printStackTrace();
         }
-
     }
 
     @Autowired
@@ -125,15 +120,14 @@ public class AttendanceController {
                 || !TbGrade6Term2.getText().equals("") || !TbGrade6Term3.getText().equals("");
     }
 
-    private void setAlert(Alert alert, String title,String message, String header){
+    public void setAlert(Alert alert, String title,String message, String header){
         Dialog = alert;
         Dialog.setTitle(title);
         Dialog.setHeaderText(header);
         Dialog.setContentText(message);
     }
 
-    private void saveAttendanceToDataBase() {
-
+    public void saveAttendanceToDataBase() {
         int Stud_Id = getStudentById(Integer.parseInt(TbId.getText())).getId();
         System.out.println(Stud_Id);
         boolean IsFound = false;
@@ -146,17 +140,13 @@ public class AttendanceController {
                 }
             }
         } catch (Exception EXC) {
+            EXC.printStackTrace();
         }
-
         if (IsFound) {
             setAlert(new Alert(Alert.AlertType.WARNING), "Not Saved",
                     "Student Attendance is already recorded", "Save Dialog");
             Dialog.showAndWait();
-        } else if (validateForm()) {
-
-
-            if (Stud_Id != 0) {
-
+        } else if (validateForm() && Stud_Id != 0) {
                 NewAttendance.setIdStu(Stud_Id);
                 NewAttendance.setYear1Term1(Integer.parseInt(TbGrade1Term1.getText().equals("") ? "0"
                         : TbGrade1Term1.getText()));
@@ -193,8 +183,6 @@ public class AttendanceController {
                 NewAttendance.setYear6Term2(Integer.parseInt(TbGrade6Term2.getText().equals("") ? "0"
                         : TbGrade6Term2.getText()));
                 NewAttendance.setYear6Term3(Integer.parseInt(TbGrade6Term3.getText().equals("") ? "0" : TbGrade6Term3.getText()));
-
-
                 AttendanceRepo.saveAndFlush(NewAttendance);
                 setAlert(new Alert(Alert.AlertType.INFORMATION), "Saved",
                         "Student Attendance is recorded", "Save Dialog");
@@ -203,13 +191,6 @@ public class AttendanceController {
                 AttendanceTable.getItems().clear();
                 NewAttendance = new Attendance();
                 loadAttendanceTable();
-
-            } else {
-                setAlert(new Alert(Alert.AlertType.ERROR), "Save Error",
-                        "Student Attendance could not be recorded", "Save Dialog");
-                Dialog.showAndWait();
-            }
-
         } else {
             setAlert(new Alert(Alert.AlertType.WARNING), "No information in Field",
                     "Enter the atudent's attendance record", "Save Dialog");
@@ -224,8 +205,8 @@ public class AttendanceController {
         boolean IsFound = false;
         ObservableList<Attendance> AttendanceList = getListOfAttendance();
         for (Attendance Item : AttendanceList) {
-            if (Item.getIdStu() ==
-                    AttendanceTable.getSelectionModel().getSelectedItem().getIdStu()) {
+            if (Item.getIdStu().equals(
+                    AttendanceTable.getSelectionModel().getSelectedItem().getIdStu())) {
                 IsFound = true;
                 break;
             }
@@ -265,15 +246,13 @@ public class AttendanceController {
             AttendanceTable.getItems().clear();
             loadAttendanceTable();
         }
-
     }
-
     @FXML
     public void btnDeleteClick(ActionEvent event) {
         boolean IsFound = false;
         ObservableList<Attendance> AttendanceList = getListOfAttendance();
         for (Attendance Item : AttendanceList) {
-            if (Item.getIdStu() == AttendanceTable.getSelectionModel().getSelectedItem().getIdStu()) {
+            if (Item.getIdStu().equals( AttendanceTable.getSelectionModel().getSelectedItem().getIdStu())) {
                 IsFound = true;
                 break;
             }
@@ -282,7 +261,7 @@ public class AttendanceController {
             setAlert(new Alert(Alert.AlertType.CONFIRMATION), "Delete",
                     "Are you sure?", "Delete Dialog");
             Optional<ButtonType> Result = Dialog.showAndWait();
-            if (Result.get() == ButtonType.OK) {
+            if (Result.get().equals( ButtonType.OK)) {
                 AttendanceRepo.delete(AttendanceTable.getSelectionModel().getSelectedItem());
                 AttendanceRepo.flush();
                 Dialog.close();
@@ -293,30 +272,32 @@ public class AttendanceController {
                 Dialog.close();
             }
         }
-
     }
-
     @FXML
     public void initialize() {
         loadStudentTable();
         loadAttendanceTable();
-
         StudentTable.setOnMouseClicked(e -> {
             if (e.getClickCount() > 0) {
-                loadSelectedContentInForm();
+                try {
+                    loadSelectedContentInForm();
+                } catch (Exception E){
+                    System.out.println("No Student Selected");
+                }
             }
         });
         AttendanceTable.setOnMouseClicked(e -> {
             if (e.getClickCount() > 0) {
-                loadSelectedContentInFormAttendance();
+                try {
+                    loadSelectedContentInFormAttendance();
+                } catch (Exception E) {
+                    System.out.println("No Attendance Selected");
+                }
             }
         });
-
-
     }
 
-    private void loadSelectedContentInFormAttendance() {
-
+    public void loadSelectedContentInFormAttendance() {
         Attendance SelectedObject = AttendanceRepo.findById(
                 AttendanceTable.getSelectionModel().getSelectedItem().getId()).get();
         AttendanceTextFields = getAttendanceTextFields();
@@ -342,14 +323,13 @@ public class AttendanceController {
                 SelectedObject.getYear6Term2() == null ? 0 : SelectedObject.getYear6Term2(),
                 SelectedObject.getYear6Term3() == null ? 0 : SelectedObject.getYear6Term3(),
         };
-
         for (int i = 0; i < TermValues.length; i++) {
             AttendanceTextFields[i].setText(String.valueOf(TermValues[i]));
         }
         loadAttendanceProfileImage();
     }
 
-    private void loadStudentInformation( Attendance SelectedObject) {
+    public void loadStudentInformation( Attendance SelectedObject) {
         TbId.setText(String.valueOf(SelectedObject.getIdStu()));
         TbFirstName.setText(StudentRepo.findById(SelectedObject.getIdStu()).get().getFirstName());
         TbMiddleName.setText(StudentRepo.findById(SelectedObject.getIdStu()).get().getMiddleName());
@@ -357,14 +337,14 @@ public class AttendanceController {
     }
 
 
-    private void loadStudentInformation( Student SelectObject) {
+    public void loadStudentInformation( Student SelectObject) {
         TbId.setText(String.valueOf(SelectObject.getId()));
         TbFirstName.setText(SelectObject.getFirstName());
         TbMiddleName.setText(SelectObject.getMiddleName());
         TbLastName.setText(SelectObject.getLastName());
     }
 
-    private void loadAttendanceProfileImage() {
+    public void loadAttendanceProfileImage() {
         try {
             byte[] imageBytes = Base64.getDecoder().decode(
                     StudentRepo.findById(AttendanceTable.getSelectionModel().getSelectedItem().getIdStu())
@@ -374,45 +354,45 @@ public class AttendanceController {
             ByteArrayInputStream ByteImage = new ByteArrayInputStream(imageBytes);
             ProfilePicture.setImage(new Image(ByteImage));
         } catch (Exception E) {
-            System.out.println("No Profile Image Found");
+            System.out.println("Wrong base 64 char or no image found");
         }
     }
 
-    private void loadStudentTable() {
+    public void loadStudentTable() {
         setCellValueFactoryForStudentTableColumn();
         StudentTable.getColumns().addAll(ColID, ColFirstName, ColMiddleName, ColLastName);
         StudentTable.setItems(getListOfStudents());
     }
 
-    private void setCellValueFactoryForStudentTableColumn() {
+    public void setCellValueFactoryForStudentTableColumn() {
         ColID.setCellValueFactory(new PropertyValueFactory<>("Id"));
         ColFirstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
         ColMiddleName.setCellValueFactory(new PropertyValueFactory<>("MiddleName"));
         ColLastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
     }
 
-    private void loadAttendanceTable() {
-        TableColumn<Attendance, Integer> ColStudId = setCellValueFactoryForAttendanceTableColumn();
+    public void loadAttendanceTable() {
+        TableColumn ColStudId = setCellValueFactoryForAttendanceTableColumn();
         AttendanceTable.getColumns().add(ColStudId);
         if (!getListOfAttendance().isEmpty()) {
             AttendanceTable.setItems(AttendanceList);
         }
     }
 
-    private  TableColumn setCellValueFactoryForAttendanceTableColumn() {
+    public  TableColumn setCellValueFactoryForAttendanceTableColumn() {
         TableColumn<Attendance, Integer> ColStudId = new TableColumn<>("Student Id");
         ColStudId.setCellValueFactory(new PropertyValueFactory<>("idStu"));
         return ColStudId;
     }
 
-    private void loadSelectedContentInForm() {
+    public void loadSelectedContentInForm() {
         clearAttendanceTextField();
         loadStudentInformation(StudentTable.getSelectionModel().getSelectedItem());
         loadProfileImage();
     }
 
 
-    private void loadProfileImage() throws IllegalArgumentException {
+    public void loadProfileImage() throws IllegalArgumentException {
         try {
             byte[] imageBytes = Base64.getDecoder().decode(
                     StudentTable.getSelectionModel().getSelectedItem().getPhoto()
@@ -421,7 +401,7 @@ public class AttendanceController {
             ByteArrayInputStream ByteImage = new ByteArrayInputStream(imageBytes);
             ProfilePicture.setImage(new Image(ByteImage));
         } catch (Exception E) {
-            System.out.println("No Profile Image Found");
+            System.out.println("Wrong base 64 char or no image found");
         }
     }
 

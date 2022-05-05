@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane prefHeight="577.0" prefWidth="643.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.warb.FXMLControllers.HealthController">
+<Pane prefHeight="577.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.warb.FXMLControllers.HealthController">
     <children>
         <Label layoutX="21.0" layoutY="14.0" text="Student Health Record" textFill="blue">
             <font>
@@ -18,47 +12,51 @@
             </font>
         </Label>
 
-        <Label layoutX="395.0" layoutY="69.0" text="ID#:" />
-        <Label layoutX="394.0" layoutY="103.0" text="Frist Name:" />
-        <Label layoutX="395.0" layoutY="137.0" text="Middle Name:" />
-        <Label layoutX="397.0" layoutY="169.0" text="Last Name:" />
+        <Label fx:id="LbID" layoutX="446.0" layoutY="69.0" text="ID#:" />
+        <Label fx:id="LbFirstName" layoutX="414.0" layoutY="103.0" text="First Name:" />
+        <Label fx:id="LbMiddleName" layoutX="405.0" layoutY="137.0" text="Middle Name:" />
+        <Label fx:id="LbLastName" layoutX="419.0" layoutY="169.0" text="Last Name:" />
 
-        <TextField layoutX="505.0" layoutY="70.0" prefHeight="25.0" prefWidth="126.0" />
-        <TextField layoutX="505.0" layoutY="133.0" prefHeight="25.0" prefWidth="126.0" />
-        <TextField layoutX="505.0" layoutY="98.0" prefHeight="25.0" prefWidth="126.0" />
-        <TextField layoutX="505.0" layoutY="165.0" prefHeight="25.0" prefWidth="126.0" />
-        <Label layoutX="307.0" layoutY="242.0" text="Physical Defects:" />
-        <Label layoutX="310.0" layoutY="271.0" text="Heart Problems:" />
-        <Label layoutX="306.0" layoutY="306.0" text="Asthmatic:" />
-        <Label layoutX="309.0" layoutY="338.0" text="Urinary Disorder:" />
-        <Label layoutX="309.0" layoutY="369.0" text="Ear Problem:" />
-        <Label layoutX="308.0" layoutY="401.0" text="Eye Problem:" />
-        <Label layoutX="310.0" layoutY="435.0" text="Other:" />
+        <TextField fx:id="TFId" editable="false" layoutX="505.0" layoutY="65.0" prefHeight="25.0" prefWidth="248.0" />
+        <TextField fx:id="TFFirstName" editable="false" layoutX="505.0" layoutY="133.0" prefHeight="25.0" prefWidth="248.0" />
+        <TextField fx:id="TFMiddleName" editable="false" layoutX="505.0" layoutY="99.0" prefHeight="25.0" prefWidth="248.0" />
+        <TextField fx:id="TFLastName" editable="false" layoutX="505.0" layoutY="165.0" prefHeight="25.0" prefWidth="248.0" />
 
-        <TextField layoutX="449.0" layoutY="238.0" prefHeight="25.0" prefWidth="182.0" />
-        <TextField layoutX="449.0" layoutY="267.0" prefHeight="25.0" prefWidth="182.0" />
-        <TextField layoutX="449.0" layoutY="334.0" prefHeight="25.0" prefWidth="182.0" />
-        <TextField layoutX="449.0" layoutY="397.0" prefHeight="25.0" prefWidth="182.0" />
-        <TextField layoutX="449.0" layoutY="431.0" prefHeight="25.0" prefWidth="182.0" />
-        <TextField layoutX="449.0" layoutY="365.0" prefHeight="25.0" prefWidth="182.0" />
-        <TextField layoutX="449.0" layoutY="302.0" prefHeight="25.0" prefWidth="182.0" />
-        <Button layoutX="387.0" layoutY="509.0" minWidth="45.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Save" textFill="#fdfcfc" />
-        <Button layoutX="564.0" layoutY="509.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Delete" textFill="#fbf8f8" />
-        <TableView layoutX="21.0" layoutY="83.0" prefHeight="165.0" prefWidth="200.0">
+        <Label fx:id="LbPhysicalDefects" layoutX="398.0" layoutY="241.0" text="Physical Defects:" />
+        <Label fx:id="LbHeartProblems" layoutX="400.0" layoutY="273.0" text="Heart Problems:" />
+        <Label fx:id="LbAsthmatic" layoutX="426.0" layoutY="306.0" text="Asthmatic:" />
+        <Label fx:id="LbUrinaryDisorder" layoutX="390.0" layoutY="338.0" text="Urinary Disorder:" />
+        <Label fx:id="LbEarProblem" layoutX="413.0" layoutY="369.0" text="Ear Problem:" />
+        <Label fx:id="LbEyeProblem" layoutX="410.0" layoutY="401.0" text="Eye Problem:" />
+        <Label fx:id="LbOther" layoutX="444.0" layoutY="435.0" text="Other:" />
+
+        <TextField fx:id="TbPhysicalDefects" layoutX="504.0" layoutY="238.0" prefHeight="25.0" prefWidth="248.0" />
+        <TextField fx:id="TbHeartProblems" layoutX="504.0" layoutY="270.0" prefHeight="25.0" prefWidth="248.0" />
+        <TextField fx:id="TbUrinaryDisorder" layoutX="505.0" layoutY="334.0" prefHeight="25.0" prefWidth="248.0" />
+        <TextField fx:id="TbEyeProblem" layoutX="505.0" layoutY="398.0" prefHeight="25.0" prefWidth="248.0" />
+        <TextField fx:id="TbOther" layoutX="505.0" layoutY="430.0" prefHeight="25.0" prefWidth="248.0" />
+        <TextField fx:id="TbEarProblem" layoutX="504.0" layoutY="366.0" prefHeight="25.0" prefWidth="248.0" />
+        <TextField fx:id="TbAsthmatic" layoutX="504.0" layoutY="302.0" prefHeight="25.0" prefWidth="248.0" />
+
+        <Button id="Btnsave" layoutX="492.0" layoutY="509.0" minWidth="45.0" mnemonicParsing="false" onAction="#AddHealthRecord" prefHeight="31.0" prefWidth="64.0" text="Save" textFill="#fdfcfc" />
+        <Button id="Btndelete" layoutX="690.0" layoutY="509.0" mnemonicParsing="false" onAction="#DeleteHealthRecord" prefHeight="31.0" prefWidth="64.0" text="Delete" textFill="#fbf8f8" />
+        <Button id="Btnupdate" layoutX="587.0" layoutY="509.0" minWidth="45.0" mnemonicParsing="false" onAction="#UpdateHealthRecord" prefHeight="31.0" prefWidth="64.0" text="Update" textFill="#fdfcfc" />
+
+        <TableView id="Student" fx:id="StudentTable" layoutX="21.0" layoutY="83.0" prefHeight="181.0" prefWidth="351.0">
+            <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY" />
             <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+
             </columns>
         </TableView>
-        <TableView layoutX="21.0" layoutY="305.0" prefHeight="165.0" prefWidth="200.0">
+
+        <TableView id="Health" fx:id="HealthTable" layoutX="21.0" layoutY="305.0" prefHeight="218.0" prefWidth="351.0">
             <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+
             </columns>
         </TableView>
+
         <Label layoutX="21.0" layoutY="54.0" text="Students List" textFill="BLUE" />
         <Label layoutX="21.0" layoutY="280.0" text="Students Health Details" textFill="BLUE" />
-        <Button layoutX="473.0" layoutY="509.0" minWidth="45.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Update" textFill="#fdfcfc" />
+
     </children>
 </Pane>
-

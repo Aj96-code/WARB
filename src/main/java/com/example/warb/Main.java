@@ -17,7 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.example.warb")
 @ComponentScan(basePackages = { "com.example.warb.*" })
 @EnableJpaRepositories("com.example.warb.Repositories")
 @EntityScan("com.example.warb.*")
