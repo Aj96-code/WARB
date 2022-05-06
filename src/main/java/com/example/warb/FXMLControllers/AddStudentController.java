@@ -288,7 +288,7 @@ public class AddStudentController {
             ColGuardianTele.setCellValueFactory(new PropertyValueFactory<>("GuardianTel"));
             ColPhoto.setCellValueFactory(new PropertyValueFactory<>("Photo"));
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }
@@ -302,9 +302,9 @@ public class AddStudentController {
 
         Optional<ButtonType> option = alert.showAndWait();
 
-        if ( option.get() == ButtonType.CANCEL) {
+        if ( option.get().equals(ButtonType.CANCEL)) {
 
-        } else if (option.get() == ButtonType.OK) {
+        } else if (option.get().equals(ButtonType.OK)) {
             try {
                 if (!StudentTable.getSelectionModel().isEmpty()) {
                     StudentRepo.deleteById(StudentTable.getSelectionModel().getSelectedItem().getId());
@@ -358,7 +358,7 @@ public class AddStudentController {
             Image image1 = new Image(StudentTable.getSelectionModel().getSelectedItem().getPhoto());
             ProfilePicture.setImage(image1);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
 
         }
 
@@ -367,7 +367,6 @@ public class AddStudentController {
         try(FileOutputStream fos = new FileOutputStream(destination)){
             fos.write(data);
             fos.close();
-
         }
         catch(Exception e){
             System.out.println("There was an error");
@@ -376,17 +375,12 @@ public class AddStudentController {
 
     @FXML
     protected void updateStudentRecord() {
-
         try {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-
             alert.setTitle("Update Record Confirmation");
             alert.setContentText("Are you sure you want to update this record?");
-
             Optional<ButtonType> option = alert.showAndWait();
-
             if (option.get() == ButtonType.CANCEL) {
-
             } else if (option.get() == ButtonType.OK) {
                 if (!StudentTable.getSelectionModel().isEmpty()) {
                     StudentTable.getSelectionModel().getSelectedItem().setErn(txtId.getText());
@@ -410,11 +404,9 @@ public class AddStudentController {
                     StudentTable.getSelectionModel().getSelectedItem().setGuardianAddress(txtGuardianAddress.getText());
                     StudentTable.getSelectionModel().getSelectedItem().setGuardianTel(txtGuardianTelephone.getText());
                     StudentTable.getSelectionModel().getSelectedItem().setPhoto(ProfilePicture.getImage().getUrl());
-
                     StudentRepo.save(StudentTable.getSelectionModel().getSelectedItem());
                     clearFields();
                     loadStudentTable();
-
                     Dialog = new Alert(Alert.AlertType.INFORMATION);
                     Dialog.setTitle("Success");
                     Dialog.setContentText("Record Updated!");
@@ -426,19 +418,14 @@ public class AddStudentController {
                     Dialog.setContentText("Please Select Student from the table");
                     Dialog.showAndWait();
                 }
-
             }
-
-
         } catch (Exception e) {
-            e.printStackTrace();
-
+            System.out.println(e.getMessage());
         }
     }
 
     @FXML
     private void addStudent() {
-
         try {
             boolean IsFound = false;
             ObservableList<Student> Studentlist = getListOfStudents();
@@ -448,7 +435,6 @@ public class AddStudentController {
                     break;
                 }
             }
-
             if (!IsFound && Integer.parseInt(txtId.getText()) != 0) {
                 NewStudent.setErn(txtId.getText());
                 NewStudent.setFirstName(txtFirstName.getText());

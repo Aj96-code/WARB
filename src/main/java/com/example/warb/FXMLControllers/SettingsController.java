@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.logging.LoggingSystem;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -26,7 +27,6 @@ public class SettingsController {
     private UserRepository UserRepo;
     private ObservableList<User> getListOfUsers() {
         return Userlist = FXCollections.observableArrayList(UserRepo.findAll());
-
     }
 @FXML
     private TableView<User> UserTable;
@@ -36,8 +36,6 @@ public class SettingsController {
             new TableColumn<>("First Name");
     private final TableColumn<User, String> ColLastName =
             new TableColumn<>("Last Name");
-
-
     private final TableColumn<User, String> ColEmail =
             new TableColumn<>("Email");
     private final TableColumn<User, String> ColRole =
@@ -46,10 +44,6 @@ public class SettingsController {
             new TableColumn<>("Password");
     private final TableColumn<User, String> ColUsername =
             new TableColumn<>("Username");
-
-
-
-
     public TextField txtId;
     public ComboBox txtRole;
     public TextField txtFirstName;
@@ -57,22 +51,17 @@ public class SettingsController {
     public TextField txtEmail;
     public TextField txtUserName;
     public PasswordField txtPassword;
-
     public PasswordField txtConfirmPassword;
-
 
 @FXML
 private void initialize() {
     loadUserTable();
    populateComboBox();
-
     UserTable.setOnMouseClicked(e -> {
         if (e.getClickCount() > 0) {
             loadSelectedUserInFields();
         }
-
     });
-
 }
 
 private void populateComboBox(){
@@ -80,22 +69,17 @@ private void populateComboBox(){
     txtRole.setItems(data1);
 }
     private void loadUserTable() {
-
         try {
-
-
             UserTable.getColumns().clear();
             UserTable.getItems().clear();
-
             ArrayList<User> Users = (ArrayList<User>) UserRepo.findAll();
             setCellValueFactoryForUserTableColumn();
             UserTable.getColumns().addAll(ColID,ColFirstName,ColLastName,ColUsername,ColPassword,ColEmail,ColRole);
             if (!getListOfUsers().isEmpty()) {
                 UserTable.setItems(getListOfUsers());
             }
-
         } catch (Exception e) {
-            e.printStackTrace();
+
             Alert Dialog = new Alert(Alert.AlertType.WARNING);
             Dialog.setTitle("Error Message");
             Dialog.setHeaderText("Error");
@@ -109,12 +93,12 @@ private void populateComboBox(){
     private void setCellValueFactoryForUserTableColumn() {
         try {
             ColUsername.setCellValueFactory(new PropertyValueFactory<>("Username"));
-            ColPassword.setCellValueFactory(new PropertyValueFactory<>("Password1"));
+            ColPassword.setCellValueFactory(new PropertyValueFactory<>("Password"));
             ColID.setCellValueFactory(new PropertyValueFactory<>("Id"));
             ColFirstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
             ColLastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
             ColEmail.setCellValueFactory(new PropertyValueFactory<>("Email"));
-            ColRole.setCellValueFactory(new PropertyValueFactory<>("Role1"));
+            ColRole.setCellValueFactory(new PropertyValueFactory<>("Role"));
         } catch (Exception e) {
             e.printStackTrace();
         }

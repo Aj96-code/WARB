@@ -86,10 +86,9 @@ public class Assessment {
 
     @Column(name = "WritingDrawing")
     private Integer writingDrawing;
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Id_Stu")
-    private Student idStu;
+
+    @Column(name = "Id_Stu")
+    private Integer idStu;
 
 
 
@@ -287,11 +286,11 @@ public class Assessment {
         this.writingDrawing = writingDrawing;
     }
 
-    public Student getIdStu() {
+    public Integer getIdStu() {
         return idStu;
     }
 
-    public void setIdStu(Student idStu) {
+    public void setIdStu(Integer idStu) {
         this.idStu = idStu;
     }
 }

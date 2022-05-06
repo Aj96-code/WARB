@@ -29,7 +29,6 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         PassingUserService Passing = PassingUserService.getInstance();
         TypeUser = Passing.getUser();
-        System.out.println(TypeUser.getUsername());
         if(!TypeUser.equals(null)){
             if(!TypeUser.getRole().equals("Admin"))
                 btnSetting.setVisible(false);

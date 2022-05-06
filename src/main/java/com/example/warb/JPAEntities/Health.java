@@ -43,9 +43,7 @@ public class Health {
         HeartProblem = heartProblem;
     }
 
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Id_Stu")
+    @Column(name = "Id_Stu")
     private Integer idStu;
 
 

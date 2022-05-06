@@ -15,7 +15,6 @@ import javafx.scene.image.ImageView;
 import org.controlsfx.control.tableview2.TableView2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import java.io.ByteArrayInputStream;
 import java.util.Base64;
 import java.util.Optional;
@@ -102,7 +101,7 @@ public class AttendanceController {
                     Field.setText("");
             }
         } catch (NullPointerException NE) {
-            NE.printStackTrace();
+            System.out.println(NE.getMessage());
         }
     }
 
@@ -126,7 +125,6 @@ public class AttendanceController {
         Dialog.setHeaderText(header);
         Dialog.setContentText(message);
     }
-
     public void saveAttendanceToDataBase() {
         int Stud_Id = getStudentById(Integer.parseInt(TbId.getText())).getId();
         System.out.println(Stud_Id);
@@ -193,15 +191,13 @@ public class AttendanceController {
                 loadAttendanceTable();
         } else {
             setAlert(new Alert(Alert.AlertType.WARNING), "No information in Field",
-                    "Enter the atudent's attendance record", "Save Dialog");
+                    "Enter the student's attendance record", "Save Dialog");
             Dialog.showAndWait();
         }
 
     }
-
     @FXML
     public void btnUpdate_Click(ActionEvent event) {
-
         boolean IsFound = false;
         ObservableList<Attendance> AttendanceList = getListOfAttendance();
         for (Attendance Item : AttendanceList) {
@@ -296,37 +292,39 @@ public class AttendanceController {
             }
         });
     }
-
     public void loadSelectedContentInFormAttendance() {
-        Attendance SelectedObject = AttendanceRepo.findById(
-                AttendanceTable.getSelectionModel().getSelectedItem().getId()).get();
-        AttendanceTextFields = getAttendanceTextFields();
-        loadStudentInformation(SelectedObject);
-
-        int[] TermValues = {
-                SelectedObject.getYear1Term1() == null ? 0 : SelectedObject.getYear1Term1(),
-                SelectedObject.getYear1Term2() == null ? 0 : SelectedObject.getYear1Term2(),
-                SelectedObject.getYear1Term3() == null ? 0 : SelectedObject.getYear1Term3(),
-                SelectedObject.getYear2Term1() == null ? 0 : SelectedObject.getYear2Term1(),
-                SelectedObject.getYear2Term2() == null ? 0 : SelectedObject.getYear2Term2(),
-                SelectedObject.getYear2Term3() == null ? 0 : SelectedObject.getYear2Term3(),
-                SelectedObject.getYear3Term1() == null ? 0 : SelectedObject.getYear3Term1(),
-                SelectedObject.getYear3Term2() == null ? 0 : SelectedObject.getYear3Term2(),
-                SelectedObject.getYear3Term3() == null ? 0 : SelectedObject.getYear3Term3(),
-                SelectedObject.getYear4Term1() == null ? 0 : SelectedObject.getYear4Term1(),
-                SelectedObject.getYear4Term2() == null ? 0 : SelectedObject.getYear4Term2(),
-                SelectedObject.getYear4Term3() == null ? 0 : SelectedObject.getYear4Term3(),
-                SelectedObject.getYear5Term1() == null ? 0 : SelectedObject.getYear5Term1(),
-                SelectedObject.getYear5Term2() == null ? 0 : SelectedObject.getYear5Term2(),
-                SelectedObject.getYear5Term3() == null ? 0 : SelectedObject.getYear5Term3(),
-                SelectedObject.getYear6Term1() == null ? 0 : SelectedObject.getYear6Term1(),
-                SelectedObject.getYear6Term2() == null ? 0 : SelectedObject.getYear6Term2(),
-                SelectedObject.getYear6Term3() == null ? 0 : SelectedObject.getYear6Term3(),
-        };
-        for (int i = 0; i < TermValues.length; i++) {
-            AttendanceTextFields[i].setText(String.valueOf(TermValues[i]));
+        try {
+            Attendance SelectedObject = AttendanceRepo.findById(
+                    AttendanceTable.getSelectionModel().getSelectedItem().getId()).get();
+            AttendanceTextFields = getAttendanceTextFields();
+            loadStudentInformation(SelectedObject);
+            int[] TermValues = {
+                    SelectedObject.getYear1Term1() == null ? 0 : SelectedObject.getYear1Term1(),
+                    SelectedObject.getYear1Term2() == null ? 0 : SelectedObject.getYear1Term2(),
+                    SelectedObject.getYear1Term3() == null ? 0 : SelectedObject.getYear1Term3(),
+                    SelectedObject.getYear2Term1() == null ? 0 : SelectedObject.getYear2Term1(),
+                    SelectedObject.getYear2Term2() == null ? 0 : SelectedObject.getYear2Term2(),
+                    SelectedObject.getYear2Term3() == null ? 0 : SelectedObject.getYear2Term3(),
+                    SelectedObject.getYear3Term1() == null ? 0 : SelectedObject.getYear3Term1(),
+                    SelectedObject.getYear3Term2() == null ? 0 : SelectedObject.getYear3Term2(),
+                    SelectedObject.getYear3Term3() == null ? 0 : SelectedObject.getYear3Term3(),
+                    SelectedObject.getYear4Term1() == null ? 0 : SelectedObject.getYear4Term1(),
+                    SelectedObject.getYear4Term2() == null ? 0 : SelectedObject.getYear4Term2(),
+                    SelectedObject.getYear4Term3() == null ? 0 : SelectedObject.getYear4Term3(),
+                    SelectedObject.getYear5Term1() == null ? 0 : SelectedObject.getYear5Term1(),
+                    SelectedObject.getYear5Term2() == null ? 0 : SelectedObject.getYear5Term2(),
+                    SelectedObject.getYear5Term3() == null ? 0 : SelectedObject.getYear5Term3(),
+                    SelectedObject.getYear6Term1() == null ? 0 : SelectedObject.getYear6Term1(),
+                    SelectedObject.getYear6Term2() == null ? 0 : SelectedObject.getYear6Term2(),
+                    SelectedObject.getYear6Term3() == null ? 0 : SelectedObject.getYear6Term3(),
+            };
+            for (int i = 0; i < TermValues.length; i++) {
+                AttendanceTextFields[i].setText(String.valueOf(TermValues[i]));
+            }
+            loadAttendanceProfileImage();
+        } catch (Exception Ex){
+            System.out.println(Ex.getMessage());
         }
-        loadAttendanceProfileImage();
     }
 
     public void loadStudentInformation( Attendance SelectedObject) {
@@ -335,8 +333,6 @@ public class AttendanceController {
         TbMiddleName.setText(StudentRepo.findById(SelectedObject.getIdStu()).get().getMiddleName());
         TbLastName.setText(StudentRepo.findById(SelectedObject.getIdStu()).get().getLastName());
     }
-
-
     public void loadStudentInformation( Student SelectObject) {
         TbId.setText(String.valueOf(SelectObject.getId()));
         TbFirstName.setText(SelectObject.getFirstName());
@@ -387,11 +383,13 @@ public class AttendanceController {
 
     public void loadSelectedContentInForm() {
         clearAttendanceTextField();
-        loadStudentInformation(StudentTable.getSelectionModel().getSelectedItem());
+        try {
+            loadStudentInformation(StudentTable.getSelectionModel().getSelectedItem());
+        } catch (Exception Ex){
+            System.out.println(Ex.getMessage());
+        }
         loadProfileImage();
     }
-
-
     public void loadProfileImage() throws IllegalArgumentException {
         try {
             byte[] imageBytes = Base64.getDecoder().decode(
@@ -404,5 +402,4 @@ public class AttendanceController {
             System.out.println("Wrong base 64 char or no image found");
         }
     }
-
 }

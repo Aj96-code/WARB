@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LoginController {
 
@@ -46,12 +47,12 @@ public class LoginController {
         Parent Root;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(new URL(getClass().getResource("/com/example/warb/Main.fxml")
+            fxmlLoader.setLocation(new URL(Objects.requireNonNull(getClass().getResource("/com/example/warb/Main.fxml"))
                     .toExternalForm()));
             fxmlLoader.setControllerFactory(BeanContainer::getBean);
             Root = fxmlLoader.load();
             Stage loginStage = new Stage();
-            loginStage.getIcons().add(new Image(getClass().getResource("/img/logo2.png").toExternalForm()));
+            loginStage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResource("/img/logo2.png")).toExternalForm()));
             loginStage.setScene(new Scene(Root, 1100, 680));
             loginStage.setResizable(false);
             loginStage.setUserData(CurrentUser);
@@ -60,9 +61,7 @@ public class LoginController {
             e.printStackTrace();
             e.getCause();
         }
-
     }
-
     public void loginActionBtn(ActionEvent actionEvent) throws MalformedURLException {
         final Node source = (Node) actionEvent.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
@@ -73,22 +72,18 @@ public class LoginController {
             if(_User.getUsername().equals(TbUserName.getText())){
                 isFound = true;
                 CurrentUser = _User;
-                System.out.println(_User.getPassword());
                 break;
             }
         }
-        System.out.println(CurrentUser.getPassword());
-        System.out.println(CurrentUser.getRole());
         if(isFound && TbPassword.getText().equals(CurrentUser.getPassword())) {
             DashboardForm(CurrentUser);
             stage.close();
         }
-        else if(!TbPassword.getText().isEmpty() && !TbPassword.getText().isEmpty()){
+        else if(!TbPassword.getText().isEmpty() && !TbPassword.getText().isEmpty())
             ErrorMessage.setText("Wrong User Name or Password");
-        } else
+        else
             ErrorMessage.setText("Please Enter User information");
     }
-
     public void BtnCancel_Click(ActionEvent event) {
         Platform.exit();
     }

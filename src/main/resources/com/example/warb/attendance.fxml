@@ -350,9 +350,7 @@
                     <Button fx:id="BtnUpdate" mnemonicParsing="false" onAction="#btnUpdate_Click" prefHeight="36.0" prefWidth="94.0" text="Update">
                         <graphic>
                             <ImageView fx:id="BtnUpdate_Click" fitHeight="20" fitWidth="20">
-                                <image>
-                                    <Image url="@../../../img/Update.png" />
-                                </image>
+                                <Image url="@../../../img/Update.png"/>
                             </ImageView>
                         </graphic>
                         <font>
@@ -362,9 +360,7 @@
                     <Button fx:id="BtnDelete" mnemonicParsing="false" onAction="#btnDeleteClick" prefHeight="36.0" prefWidth="94.0" text="Delete">
                         <graphic>
                             <ImageView fitHeight="20" fitWidth="20">
-                                <image>
-                                    <Image url="@../../../img/Delete.png" />
-                                </image>
+                                <Image url="@../../../img/Delete.png"/>
                             </ImageView>
                         </graphic>
                         <font>
