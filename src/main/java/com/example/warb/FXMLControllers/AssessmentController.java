@@ -23,11 +23,11 @@ public class AssessmentController {
     private StudentRepository Repo;
     @Autowired
     private AssessmentRepository ARepo;
-    public Button BtUpdate;
-    public Button BtDelete;
-    public Button BtSave;
+    public Button BtnUpdate;
+    public Button BtnDelete;
+    public Button BtnSave;
     public javafx.scene.control.TextField IdTf;
-    public Button BtRefresh;
+    public Button BtnClear;
     public TextField GenKnow;
     public javafx.scene.control.TextField Soci;
     public javafx.scene.control.TextField LangAG4;
@@ -58,19 +58,14 @@ public class AssessmentController {
     public TableView<Student> ListView;
     public TableView<Assessment> SecondView;
 
-    //private TableColumn<Student ,String>ColFName;
-    //private TableColumn<Student, String>ColLName;
-
-    private TextField[] SecondViewText = new TextField[25];
+    private TextField[] SecondViewText = new TextField[24];
     private final TableColumn<Student, String> ColFName =
             new TableColumn<>("First Name");
     private final TableColumn<Student, String> ColLName =
             new TableColumn<>("Last Name");
 
-
     ObservableList<Student> StudentList = FXCollections.observableArrayList();
     ObservableList<Assessment> AssessmentList = FXCollections.observableArrayList();
-
 
     public void RefreshData() {
         GenKnow.setText("");
@@ -133,31 +128,31 @@ public class AssessmentController {
     }
 
     private TextField[] getAssessmentTextField() {
-        TextField[] tbArray = new TextField[25];
-        tbArray[0] = GenKnow;
-        tbArray[1] = read;
-        tbArray[2] = NumConc;
-        tbArray[3] = WDraw;
-        tbArray[4] = OLang;
-        tbArray[5] = NEst;
-        tbArray[6] = ComT;
-        tbArray[7] = Stat;
-        tbArray[8] = Geo;
-        tbArray[9] = Vocab;
-        tbArray[10] = Alg;
-        tbArray[11] = StudSk;
-        tbArray[12] = Stru;
-        tbArray[13] = LangAG4;
-        tbArray[14] = MathsG4;
-        tbArray[15] = LangAG5;
-        tbArray[16] = MathsG5;
-        tbArray[17] = ATestG6;
-        tbArray[18] = MathsG6;
+        TextField[] tbArray = new TextField[24];
+        tbArray[3] = GenKnow;
+        tbArray[15] = read;
+        tbArray[12] = NumConc;
+        tbArray[20] = WDraw;
+        tbArray[14] = OLang;
+        tbArray[13] = NEst;
+        tbArray[2] = ComT;
+        tbArray[23] = Stat;
+        tbArray[4] = Geo;
+        tbArray[21] = Vocab;
+        tbArray[1] = Alg;
+        tbArray[18] = StudSk;
+        tbArray[22] = Stru;
+        tbArray[5] = LangAG4;
+        tbArray[8] = MathsG4;
+        tbArray[6] = LangAG5;
+        tbArray[9] = MathsG5;
+        tbArray[0] = ATestG6;
+        tbArray[10] = MathsG6;
         tbArray[19] = LangAG6;
-        tbArray[20] = LAG6C;
-        tbArray[21] = Sci;
-        tbArray[22] = MS6C;
-        tbArray[23] = Soci;
+        tbArray[7] = LAG6C;
+        tbArray[17] = Sci;
+        tbArray[11] = MS6C;
+        tbArray[16] = Soci;
 
         return tbArray;
     }
@@ -276,7 +271,7 @@ public class AssessmentController {
         ColFName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
     }
 
-    private TableColumn setAssessmentProperties() {
+    private TableColumn<Assessment, Integer> setAssessmentProperties() {
         TableColumn<Assessment, Integer> ColStuId = new TableColumn<>("Student Id");
         ColStuId.setCellValueFactory(new PropertyValueFactory<>("idStu"));
         return ColStuId;
@@ -288,8 +283,8 @@ public class AssessmentController {
                 MathsG4.getText().isEmpty() || OLang.getText().isEmpty() ||
                 Alg.getText().isEmpty() || LangAG5.getText().isEmpty() || read.getText().isEmpty() || Stat.getText().isEmpty() ||
                 MathsG5.getText().isEmpty() || Stru.getText().isEmpty() || WDraw.getText().isEmpty() || ATestG6.getText().isEmpty() ||
-                Vocab.getText() != "" || NEst.getText() != "" || LangAG6.getText().isEmpty() || StudSk.getText().isEmpty() ||
-                Sci.getText() != "" || MathsG6.getText() != "" || ComT.getText().isEmpty() || MS6C.getText().isEmpty();
+                Vocab.getText().isEmpty()|| NEst.getText().isEmpty()|| LangAG6.getText().isEmpty() || StudSk.getText().isEmpty() ||
+                Sci.getText().isEmpty()|| MathsG6.getText().isEmpty()|| ComT.getText().isEmpty() || MS6C.getText().isEmpty();
     }
 
     @FXML

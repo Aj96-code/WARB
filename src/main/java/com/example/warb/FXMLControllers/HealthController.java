@@ -34,13 +34,6 @@ public class HealthController {
     private TextField TbOther;
     @FXML
     private TextField TbPhysicalDefects;
-    @FXML
-    public Button Save;
-    @FXML
-    public Button Update;
-    @FXML
-    public Button Delete;
-
 
     @Autowired
     private UserRepository UserRepo;
@@ -66,8 +59,7 @@ public class HealthController {
 
     private final TableColumn<Health, String> ColAsthmatic =
             new TableColumn<>("Asthmatic");
-    private final TableColumn<Health, Integer> ColHealthId =
-            new TableColumn<>("Id");
+    private final TableColumn<Health, Integer> ColStudId = new TableColumn<>("Student Id");
     private final TableColumn<Health, String> ColUrinaryDisorder =
             new TableColumn<>("Urinary Disorder");
     private final TableColumn<Health, String> ColEarProblem =
@@ -106,21 +98,28 @@ public class HealthController {
         LoadHealthTable();
         StudentTable.setOnMouseClicked(e -> {
             if (e.getClickCount() > 0) {
+                ClearFields();
                 loadSelectedItemInFields();
             }
         });
+        HealthTable.setOnMouseClicked( e -> {
+            if(e.getClickCount() > 0){
+                loadSelectedItemInHealthTable();
+            }
+        });
     }
+
+
 
     private void SetColumnProperties() {
         StuColID.setCellValueFactory(new PropertyValueFactory<>("Id"));
         ColLastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         ColMiddleName.setCellValueFactory(new PropertyValueFactory<>("MiddleName"));
         ColFirstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
-
     }
 
     private void SetHealthTableColumnProperties() {
-        StuColID.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        ColStudId.setCellValueFactory(new PropertyValueFactory<>("idStu"));
         ColAsthmatic.setCellValueFactory(new PropertyValueFactory<>("Asthmatic"));
         ColUrinaryDisorder.setCellValueFactory(new PropertyValueFactory<>("UrinaryDisoder"));
         ColEarProblem.setCellValueFactory(new PropertyValueFactory<>("EarProblem"));
@@ -137,7 +136,7 @@ public class HealthController {
         SetHealthTableColumnProperties();
         HealthTable.getColumns().clear();
         HealthTable.getItems().clear();
-        HealthTable.getColumns().addAll(ColAsthmatic, ColEarProblem, ColEyeProblem, ColHeartProblems, ColPhysicalDefects,
+        HealthTable.getColumns().addAll(ColStudId,ColAsthmatic, ColEarProblem, ColEyeProblem, ColHeartProblems, ColPhysicalDefects,
                 ColUrinaryDisorder, ColOther);
         HealthTable.getItems();
         HealthList.addAll(HealthRepo.findAll());
@@ -162,7 +161,7 @@ public class HealthController {
                 }
                 if (isFound == false) {
 
-                    // health1.setIdStu(Integer.parseInt(TFId.getText()));
+                    health1.setIdStu(Integer.parseInt(TFId.getText()));
                     health1.setAsthmatic(TbAsthmatic.getText());
                     health1.setEarProblem(TbEarProblem.getText());
                     health1.setEyeProblem(TbEyeProblem.getText());
@@ -174,7 +173,8 @@ public class HealthController {
 
                     HealthTable.getColumns().clear();
                     HealthTable.getItems().clear();
-
+                    health1 = new Health();
+                    ClearFields();
                     LoadHealthTable();
 
                 } else {
@@ -301,6 +301,26 @@ public class HealthController {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void loadSelectedItemInHealthTable() {
+        Health SelectedItem = HealthTable.getSelectionModel().getSelectedItem();
+        if(SelectedItem != null){
+            Student RecordFor = StudentRepo.findById(SelectedItem.getIdStu()).get();
+            //Student Information Section
+            TFId.setText(RecordFor.getId().toString());
+            TFFirstName.setText(RecordFor.getFirstName());
+            TFLastName.setText(RecordFor.getLastName());
+            TFMiddleName.setText(RecordFor.getMiddleName());
+            //Health Table Section
+            TbHeartProblems.setText(SelectedItem.getHeartProblem());
+            TbOther.setText(SelectedItem.getOther());
+            TbUrinaryDisorder.setText(SelectedItem.getUrinaryDisoder());
+            TbEyeProblem.setText(SelectedItem.getEyeProblem());
+            TbAsthmatic.setText(SelectedItem.getAsthmatic());
+            TbEarProblem.setText(SelectedItem.getEyeProblem());
+            TbPhysicalDefects.setText(SelectedItem.getPhysicalDefects());
         }
     }
 }

@@ -34,79 +34,60 @@ public class Health {
     private String other;
     @Column(name="HeartProblem", length = 100)
     private String HeartProblem;
-
     public String getHeartProblem() {
         return HeartProblem;
     }
-
     public void setHeartProblem(String heartProblem) {
         HeartProblem = heartProblem;
     }
 
     @Column(name = "Id_Stu")
     private Integer idStu;
-
-
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public String getPhysicalDefects() {
         return physicalDefects;
     }
-
     public void setPhysicalDefects(String physicalDefects) {
         this.physicalDefects = physicalDefects;
     }
-
     public String getAsthmatic() {
         return asthmatic;
     }
-
     public void setAsthmatic(String asthmatic) {
         this.asthmatic = asthmatic;
     }
-
     public String getUrinaryDisoder() {
         return urinaryDisoder;
     }
-
     public void setUrinaryDisoder(String urinaryDisoder) {
         this.urinaryDisoder = urinaryDisoder;
     }
-
     public String getEarProblem() {
         return earProblem;
     }
-
     public void setEarProblem(String earProblem) {
         this.earProblem = earProblem;
     }
-
     public String getEyeProblem() {
         return eyeProblem;
     }
-
     public void setEyeProblem(String eyeProblem) {
         this.eyeProblem = eyeProblem;
     }
-
     public String getOther() {
         return other;
     }
-
     public void setOther(String other) {
         this.other = other;
     }
-
     public Integer getIdStu() {
         return idStu;
     }
-
     public void setIdStu(int idStu) {
         this.idStu = idStu;
     }

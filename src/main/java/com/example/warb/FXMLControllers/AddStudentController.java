@@ -12,21 +12,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Base64Utils;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.util.FileSystemUtils;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 
 
 
 public class AddStudentController {
 
-    @FXML
-    public Button btnAddStudent;
-    @FXML
-    public Button updateProfilePicture;
     @FXML public TextField txtId;
     @FXML public TextField txtFirstName;
     @FXML public TextField txtMiddleName;
@@ -51,13 +50,11 @@ public class AddStudentController {
     @FXML public ImageView ProfilePicture;
     @FXML
     public Label ern;
-    @FXML
-    public Button btnUpdateProfilePicture;
-    @FXML
-    public Button btnClear;
+    public TextField txtERN;
+
     public void initialize() {
+        txtId.setDisable(true);
         try {
-            loadProfileImage();
             loadStudentTable();
             updateComboBox();
             StudentTable.setOnMouseClicked(e -> {
@@ -75,22 +72,16 @@ public class AddStudentController {
         }
     }
 
-    @FXML
-    private void loadProfileImage() throws IllegalArgumentException {
-        File file = new File("src/icons8-user-80.png");
-        Image image = new Image(file.toURI().toString());
-        ProfilePicture.setImage(image);
-    }
-
 
     @FXML
-    private void onBtnUpdateProfilePicture(){
+    private void onBtnUpdateProfilePicture() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Profile Picture");
         File file =fileChooser.showOpenDialog(null);
         if( file != null){
             Image image = new Image(file.getPath());
             ProfilePicture.setImage(image);
+
         }
 
 
@@ -98,7 +89,7 @@ public class AddStudentController {
 
 
     public boolean validateForm() {
-        return !txtId.getText().equals("") || txtFirstName.getText().equals("")
+        return !txtERN.getText().equals("") || !txtFirstName.getText().equals("")
                 ||!txtMiddleName.getText().equals("") ||!txtLastName.getText().equals("")
                 ||!txtBirthCertNumber.getText().equals("") ||!txtSportsHouse.getValue().equals("")
                 ||!txtClub.getText().equals("") ||!txtGender.getValue().equals("")
@@ -111,11 +102,11 @@ public class AddStudentController {
     }
 
     public void updateComboBox() {
-        ObservableList<String> data1 = FXCollections.observableArrayList("male", "female", "other");
-        ObservableList<String> data2 = FXCollections.observableArrayList("Blue", "Red", "Purple", "Green");
-        txtGender.setItems(data1);
+        ObservableList<String> gender = FXCollections.observableArrayList("male", "female", "other");
+        ObservableList<String> sportsHouses = FXCollections.observableArrayList("Blue", "Red", "Purple", "Green");
+        txtGender.setItems(gender);
 
-        txtSportsHouse.setItems(data2);
+        txtSportsHouse.setItems(sportsHouses);
     }
 
     @Autowired
@@ -137,6 +128,7 @@ public class AddStudentController {
     protected void clearFields() {
         try {
             txtId.setText("");
+            txtERN.setText("");
             txtFirstName.setText("");
             txtMiddleName.setText("");
             txtLastName.setText("");
@@ -335,6 +327,7 @@ public class AddStudentController {
         try {
             
             txtId.setText(StudentTable.getSelectionModel().getSelectedItem().getId().toString());
+            txtERN.setText(StudentTable.getSelectionModel().getSelectedItem().getErn());
             txtFirstName.setText(StudentTable.getSelectionModel().getSelectedItem().getFirstName());
             txtLastName.setText(StudentTable.getSelectionModel().getSelectedItem().getLastName());
             txtMiddleName.setText(StudentTable.getSelectionModel().getSelectedItem().getMiddleName());
@@ -355,8 +348,8 @@ public class AddStudentController {
             txtGuardOccupation.setText(StudentTable.getSelectionModel().getSelectedItem().getGuardianOccupation());
             txtGuardianAddress.setText(StudentTable.getSelectionModel().getSelectedItem().getGuardianAddress());
             txtGuardianTelephone.setText(StudentTable.getSelectionModel().getSelectedItem().getGuardianTel());
-            Image image1 = new Image(StudentTable.getSelectionModel().getSelectedItem().getPhoto());
-            ProfilePicture.setImage(image1);
+            Image ImageBytes = new Image(StudentTable.getSelectionModel().getSelectedItem().getPhoto());
+            ProfilePicture.setImage(ImageBytes);
         } catch (Exception e) {
             System.out.println(e.getMessage());
 
@@ -383,7 +376,7 @@ public class AddStudentController {
             if (option.get() == ButtonType.CANCEL) {
             } else if (option.get() == ButtonType.OK) {
                 if (!StudentTable.getSelectionModel().isEmpty()) {
-                    StudentTable.getSelectionModel().getSelectedItem().setErn(txtId.getText());
+                    StudentTable.getSelectionModel().getSelectedItem().setErn(txtERN.getText());
                     StudentTable.getSelectionModel().getSelectedItem().setFirstName(txtFirstName.getText());
                     StudentTable.getSelectionModel().getSelectedItem().setMiddleName(txtMiddleName.getText());
                     StudentTable.getSelectionModel().getSelectedItem().setBirthCertNum(txtBirthCertNumber.getText());
@@ -429,14 +422,16 @@ public class AddStudentController {
         try {
             boolean IsFound = false;
             ObservableList<Student> Studentlist = getListOfStudents();
-            for (Student Stu1 : Studentlist) {
-                if (Stu1.getId() == Integer.parseInt(txtId.getText())) {
-                    IsFound = true;
-                    break;
+            if(!txtId.getText().equals("")){
+                for (Student Stu1 : Studentlist) {
+                    if (Stu1.getId() == Integer.parseInt(txtId.getText())) {
+                        IsFound = true;
+                        break;
+                    }
                 }
             }
-            if (!IsFound && Integer.parseInt(txtId.getText()) != 0) {
-                NewStudent.setErn(txtId.getText());
+            if (!IsFound ) {
+                NewStudent.setErn(txtERN.getText());
                 NewStudent.setFirstName(txtFirstName.getText());
                 NewStudent.setMiddleName(txtMiddleName.getText());
                 NewStudent.setLastName(txtLastName.getText());
@@ -458,27 +453,14 @@ public class AddStudentController {
                 NewStudent.setGuardianOccupation(txtGuardOccupation.getText());
                 NewStudent.setGuardianAddress(txtGuardianAddress.getText());
                 NewStudent.setGuardianTel(txtGuardianTelephone.getText());
-                NewStudent.setPhoto(ProfilePicture.getImage().getUrl().toString());
 
-               /* BufferedImage bImage = ImageIO.read(new File(ProfilePicture.getImage().getUrl()));
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                ImageIO.write(bImage, "png", bos );
-                byte [] data = bos.toByteArray();
-
-                */
-
-               /*
-                BufferedImage image = ImageIO.read(new File(ProfilePicture.getImage().getUrl()));
-                ByteArrayOutputStream outStreamObj = new ByteArrayOutputStream();
-                ImageIO.write(image, "png", outStreamObj);
-                byte [] byteArray = outStreamObj.toByteArray();
-                newstudent.setPhoto(byteArray.toString());
-
-
-
-              //  newstudent.setPhoto(ProfilePicture.getImage().getUrl().getBytes().toString());
-
-                */
+                if(ProfilePicture.getImage() != null){
+                    FileInputStream Fi = new FileInputStream(new File(ProfilePicture.getImage().getUrl()));
+                    byte[] imgBytes = new byte[(int)new File(ProfilePicture.getImage().getUrl()).length()];
+                    Fi.read(imgBytes);
+                    String enImgFile = new String(Base64Utils.encode(imgBytes));
+                    NewStudent.setPhoto(enImgFile);
+                }
                 StudentRepo.saveAndFlush(NewStudent);
                 Alert b = new Alert(Alert.AlertType.NONE);
                 b.setAlertType(Alert.AlertType.CONFIRMATION);
@@ -493,13 +475,6 @@ public class AddStudentController {
                     b.setAlertType(Alert.AlertType.CONFIRMATION);
                     b.setTitle("Error!");
                     b.setContentText("A record with this ern already exist please try again");
-                    b.show();
-                }
-                if (txtId.getText().isBlank()) {
-                    Alert b = new Alert(Alert.AlertType.NONE);
-                    b.setAlertType(Alert.AlertType.CONFIRMATION);
-                    b.setTitle("Error!");
-                    b.setContentText("The ERN Field is required");
                     b.show();
                 }
             }

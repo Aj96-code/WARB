@@ -22,11 +22,11 @@
         <effect>
             <DropShadow />
         </effect>
-        <TextField fx:id="txtId" layoutX="88.0" layoutY="99.0" prefHeight="25.0" prefWidth="149.0" />
+        <TextField fx:id="txtId" layoutX="88.0" layoutY="62.0" prefHeight="25.0" prefWidth="149.0" />
         <TextField fx:id="txtFirstName" layoutX="88.0" layoutY="137.0" prefHeight="25.0" prefWidth="149.0" />
         <TextField fx:id="txtMiddleName" layoutX="89.0" layoutY="177.0" prefHeight="25.0" prefWidth="149.0" />
         <TextField fx:id="txtLastName" layoutX="89.0" layoutY="217.0" prefHeight="25.0" prefWidth="149.0" />
-        <Label layoutX="42.0" layoutY="102.0" prefHeight="17.0" prefWidth="79.0" text="ID">
+        <Label layoutX="29.0" layoutY="66.0" prefHeight="17.0" prefWidth="79.0" text="ID">
             <font>
                 <Font size="10.0" />
             </font>
@@ -166,7 +166,9 @@
         <DatePicker fx:id="txtDOB" layoutX="90.0" layoutY="295.0" prefHeight="25.0" prefWidth="149.0" />
         <ComboBox fx:id="txtGender" layoutX="90.0" layoutY="255.0" prefWidth="150.0" />
         <ComboBox fx:id="txtSportsHouse" layoutX="366.0" layoutY="52.0" prefWidth="150.0" />
-        <ImageView fx:id="ProfilePicture" fitHeight="91.0" fitWidth="99.0" layoutX="111.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+        <ImageView fx:id="ProfilePicture" fitHeight="53.0" fitWidth="99.0" layoutX="90.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="29.0" layoutY="107.0" text="ERN" />
+      <TextField fx:id="txtERN" layoutX="89.0" layoutY="103.0" prefHeight="23.0" prefWidth="150.0" />
     </Pane>
     <TableView fx:id="StudentTable" layoutX="4.0" layoutY="437.0" prefHeight="168.0" prefWidth="887.0">
         <columnResizePolicy>

@@ -342,13 +342,8 @@ public class AttendanceController {
 
     public void loadAttendanceProfileImage() {
         try {
-            byte[] imageBytes = Base64.getDecoder().decode(
-                    StudentRepo.findById(AttendanceTable.getSelectionModel().getSelectedItem().getIdStu())
-                            .get().getPhoto()
-                            .replace("data:image/png;base64,", "")
-            );
-            ByteArrayInputStream ByteImage = new ByteArrayInputStream(imageBytes);
-            ProfilePicture.setImage(new Image(ByteImage));
+            Image Photo = new Image(StudentRepo.findById( AttendanceTable.getSelectionModel().getSelectedItem().getIdStu()).get().getPhoto());
+            ProfilePicture.setImage(Photo);
         } catch (Exception E) {
             System.out.println("Wrong base 64 char or no image found");
         }
@@ -392,12 +387,8 @@ public class AttendanceController {
     }
     public void loadProfileImage() throws IllegalArgumentException {
         try {
-            byte[] imageBytes = Base64.getDecoder().decode(
-                    StudentTable.getSelectionModel().getSelectedItem().getPhoto()
-                            .replace("data:image/png;base64,", "")
-            );
-            ByteArrayInputStream ByteImage = new ByteArrayInputStream(imageBytes);
-            ProfilePicture.setImage(new Image(ByteImage));
+            Image Photo = new Image(StudentTable.getSelectionModel().getSelectedItem().getPhoto());
+            ProfilePicture.setImage(Photo);
         } catch (Exception E) {
             System.out.println("Wrong base 64 char or no image found");
         }
