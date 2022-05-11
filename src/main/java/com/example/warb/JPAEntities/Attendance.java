@@ -96,6 +96,32 @@ public class Attendance {
 
     @Column(name = "Id_Stu")
     private Integer idStu;
+    public Attendance(){
+
+    }
+    public Attendance(Integer year1Term1, Integer year1Term2, Integer year1Term3, Integer year2Term1, Integer year2Term2,
+                      Integer year2Term3, Integer year3Term1, Integer year3Term2, Integer year3Term3, Integer year4Term1,
+                      Integer year4Term2, Integer year4Term3, Integer year5Term1, Integer year5Term2, Integer year5Term3,
+                      Integer year6Term1, Integer year6Term2, Integer year6Term3) {
+        this.year1Term1 = year1Term1;
+        this.year1Term2 = year1Term2;
+        this.year1Term3 = year1Term3;
+        this.year2Term1 = year2Term1;
+        this.year2Term2 = year2Term2;
+        this.year2Term3 = year2Term3;
+        this.year3Term1 = year3Term1;
+        this.year3Term2 = year3Term2;
+        this.year3Term3 = year3Term3;
+        this.year4Term1 = year4Term1;
+        this.year4Term2 = year4Term2;
+        this.year4Term3 = year4Term3;
+        this.year5Term1 = year5Term1;
+        this.year5Term2 = year5Term2;
+        this.year5Term3 = year5Term3;
+        this.year6Term1 = year6Term1;
+        this.year6Term2 = year6Term2;
+        this.year6Term3 = year6Term3;
+    }
 
     public Integer getId() {
         return id;

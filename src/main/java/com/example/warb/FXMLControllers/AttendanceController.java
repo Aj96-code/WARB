@@ -4,6 +4,7 @@ import com.example.warb.JPAEntities.Attendance;
 import com.example.warb.JPAEntities.Student;
 import com.example.warb.Repositories.AttendanceRepository;
 import com.example.warb.Repositories.StudentRepository;
+import com.example.warb.Services.FormUtilities;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,6 +41,7 @@ public class AttendanceController {
     private TableView<Student> StudentTable;
     @FXML
     private TextField TbId, TbFirstName, TbMiddleName, TbLastName;
+    private final FormUtilities Utilities = new FormUtilities();
     @FXML
     private TableView2<Attendance> AttendanceTable;
     private TextField[] AttendanceTextFields = new TextField[18];
@@ -108,15 +110,15 @@ public class AttendanceController {
     @Autowired
     Attendance NewAttendance;
     public boolean validateForm() {
-        return     !TbGrade1Term1.getText().equals("") || !TbGrade1Term2.getText().equals("")
-                || !TbGrade1Term3.getText().equals("") || !TbGrade2Term1.getText().equals("")
-                || !TbGrade2Term2.getText().equals("") || !TbGrade2Term3.getText().equals("")
-                || !TbGrade3Term1.getText().equals("") || !TbGrade3Term2.getText().equals("")
-                || !TbGrade3Term3.getText().equals("") || !TbGrade4Term1.getText().equals("")
-                || !TbGrade4Term2.getText().equals("") || !TbGrade4Term3.getText().equals("")
-                || !TbGrade5Term1.getText().equals("") || !TbGrade5Term2.getText().equals("")
-                || !TbGrade5Term3.getText().equals("") || !TbGrade6Term1.getText().equals("")
-                || !TbGrade6Term2.getText().equals("") || !TbGrade6Term3.getText().equals("");
+        return  Utilities.validateAttendanceForm(TbGrade1Term1.getText(), TbGrade1Term2.getText(),
+                TbGrade1Term3.getText(), TbGrade2Term1.getText(),
+                TbGrade2Term2.getText(), TbGrade2Term3.getText(),
+                TbGrade3Term1.getText(), TbGrade3Term2.getText(),
+                TbGrade3Term3.getText(), TbGrade4Term1.getText(),
+                TbGrade4Term2.getText(), TbGrade4Term3.getText(),
+                TbGrade5Term1.getText(), TbGrade5Term2.getText(),
+                TbGrade5Term3.getText(), TbGrade6Term1.getText(),
+                TbGrade6Term2.getText(), TbGrade6Term3.getText());
     }
 
     public void setAlert(Alert alert, String title,String message, String header){
@@ -125,6 +127,7 @@ public class AttendanceController {
         Dialog.setHeaderText(header);
         Dialog.setContentText(message);
     }
+
     public void saveAttendanceToDataBase() {
         int Stud_Id = getStudentById(Integer.parseInt(TbId.getText())).getId();
         System.out.println(Stud_Id);

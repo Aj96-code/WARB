@@ -22,7 +22,7 @@ public class MainController implements Initializable {
     @FXML
     public Button btnSetting;
     @Autowired
-    private BeanFactory BeanContainer;
+    public BeanFactory BeanContainer;
     @FXML
     private StackPane contentArea;
     @Override

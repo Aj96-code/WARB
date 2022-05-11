@@ -24,6 +24,7 @@ public class SpringConfiguration {
         return new MainController();
     }
 
+
     @Bean
     public AddStudentController addStudentController() {
         return new AddStudentController();

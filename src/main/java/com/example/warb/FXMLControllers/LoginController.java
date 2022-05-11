@@ -35,9 +35,9 @@ public class LoginController {
     public Label ErrorMessage;
     public Button BtnCancel;
     @Autowired
-    BeanFactory BeanContainer;
+    public BeanFactory BeanContainer;
     @Autowired
-    UserRepository UserRepo;
+    public UserRepository UserRepo;
 
     ArrayList<User> Users = new ArrayList<User>();
 
