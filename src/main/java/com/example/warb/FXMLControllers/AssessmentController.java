@@ -4,6 +4,7 @@ import com.example.warb.JPAEntities.Assessment;
 import com.example.warb.JPAEntities.Student;
 import com.example.warb.Repositories.AssessmentRepository;
 import com.example.warb.Repositories.StudentRepository;
+import com.example.warb.Services.FormUtilities;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,7 +19,7 @@ import java.util.*;
 
 @Component
 public class AssessmentController {
-
+    private final FormUtilities Utilities = new FormUtilities();
     @Autowired
     private StudentRepository Repo;
     @Autowired
@@ -26,7 +27,7 @@ public class AssessmentController {
     public Button BtnUpdate;
     public Button BtnDelete;
     public Button BtnSave;
-    public javafx.scene.control.TextField IdTf;
+    public TextField IdTf;
     public Button BtnClear;
     public TextField GenKnow;
     public javafx.scene.control.TextField Soci;
@@ -129,30 +130,30 @@ public class AssessmentController {
 
     private TextField[] getAssessmentTextField() {
         TextField[] tbArray = new TextField[24];
-        tbArray[3] = GenKnow;
-        tbArray[15] = read;
-        tbArray[12] = NumConc;
-        tbArray[20] = WDraw;
-        tbArray[14] = OLang;
-        tbArray[13] = NEst;
-        tbArray[2] = ComT;
-        tbArray[23] = Stat;
-        tbArray[4] = Geo;
-        tbArray[21] = Vocab;
-        tbArray[1] = Alg;
-        tbArray[18] = StudSk;
-        tbArray[22] = Stru;
-        tbArray[5] = LangAG4;
-        tbArray[8] = MathsG4;
-        tbArray[6] = LangAG5;
-        tbArray[9] = MathsG5;
-        tbArray[0] = ATestG6;
-        tbArray[10] = MathsG6;
+        tbArray[0] = GenKnow;
+        tbArray[1] = read;
+        tbArray[2] = NumConc;
+        tbArray[3] = WDraw;
+        tbArray[4] = OLang;
+        tbArray[5] = NEst;
+        tbArray[6] = ComT;
+        tbArray[7] = Stat;
+        tbArray[8] = Geo;
+        tbArray[9] = Vocab;
+        tbArray[10] = Alg;
+        tbArray[11] = StudSk;
+        tbArray[12] = Stru;
+        tbArray[13] = LangAG4;
+        tbArray[14] = MathsG4;
+        tbArray[15] = LangAG5;
+        tbArray[16] = MathsG5;
+        tbArray[17] = ATestG6;
+        tbArray[18] = MathsG6;
         tbArray[19] = LangAG6;
-        tbArray[7] = LAG6C;
-        tbArray[17] = Sci;
-        tbArray[11] = MS6C;
-        tbArray[16] = Soci;
+        tbArray[20] = LAG6C;
+        tbArray[21] = Sci;
+        tbArray[22] = MS6C;
+        tbArray[23] = Soci;
 
         return tbArray;
     }
@@ -166,27 +167,29 @@ public class AssessmentController {
         // SelectedObject = ARepo.findById(ListView.getSelectionModel().getSelectedItem().getId()).get();
 
         int[] assessmentValues = {
-                SelectedObject.getAbilityTest() == null ? 0 : SelectedObject.getAbilityTest(),
-                SelectedObject.getAlgebra() == null ? 0 : SelectedObject.getAlgebra(),
-                SelectedObject.getComTask() == null ? 0 : SelectedObject.getComTask(),
                 SelectedObject.getGenKnowledge() == null ? 0 : SelectedObject.getGenKnowledge(),
-                SelectedObject.getGeometry() == null ? 0 : SelectedObject.getGeometry(),
-                SelectedObject.getLangArtGrade4() == null ? 0 : SelectedObject.getLangArtGrade4(),
-                SelectedObject.getLangArtGrade5() == null ? 0 : SelectedObject.getLangArtGrade5(),
-                SelectedObject.getLangArtGrade6Curri() == null ? 0 : SelectedObject.getLangArtGrade6Curri(),
-                SelectedObject.getMathGrade4() == null ? 0 : SelectedObject.getMathGrade4(),
-                SelectedObject.getMathGrade5() == null ? 0 : SelectedObject.getMathGrade5(),
-                SelectedObject.getMathGrade6() == null ? 0 : SelectedObject.getMathGrade6(),
-                SelectedObject.getMathGrade6Curri() == null ? 0 : SelectedObject.getMathGrade6Curri(),
-                SelectedObject.getNumberConcept() == null ? 0 : SelectedObject.getNumberConcept(),
-                SelectedObject.getNumEst() == null ? 0 : SelectedObject.getNumEst(),
-                SelectedObject.getOralLang() == null ? 0 : SelectedObject.getOralLang(),
                 SelectedObject.getReading() == null ? 0 : SelectedObject.getReading(),
-                SelectedObject.getScience() == null ? 0 : SelectedObject.getScience(),
-                SelectedObject.getStructure() == null ? 0 : SelectedObject.getStructure(),
-                SelectedObject.getStudySkills() == null ? 0 : SelectedObject.getStudySkills(),
-                SelectedObject.getVocab() == null ? 0 : SelectedObject.getVocab(),
+                SelectedObject.getNumberConcept() == null ? 0 : SelectedObject.getNumberConcept(),
                 SelectedObject.getWritingDrawing() == null ? 0 : SelectedObject.getWritingDrawing(),
+                SelectedObject.getOralLang() == null ? 0 : SelectedObject.getOralLang(),
+                SelectedObject.getNumEst() == null ? 0 : SelectedObject.getNumEst(),
+                SelectedObject.getComTask() == null ? 0 : SelectedObject.getComTask(),
+                SelectedObject.getStatistics() == null ? 0 : SelectedObject.getStatistics(),
+                SelectedObject.getGeometry() == null ? 0 : SelectedObject.getGeometry(),
+                SelectedObject.getVocab() == null ? 0 : SelectedObject.getVocab(),
+                SelectedObject.getAlgebra() == null ? 0 : SelectedObject.getAlgebra(),
+                SelectedObject.getStudySkills() == null ? 0 : SelectedObject.getStudySkills(),
+                SelectedObject.getStructure() == null ? 0 : SelectedObject.getStructure(),
+                SelectedObject.getLangArtGrade4() == null ? 0 : SelectedObject.getLangArtGrade4(),
+                SelectedObject.getMathGrade4() == null ? 0 : SelectedObject.getMathGrade4(),
+                SelectedObject.getLangArtGrade5() == null ? 0 : SelectedObject.getLangArtGrade5(),
+                SelectedObject.getMathGrade5() == null ? 0 : SelectedObject.getMathGrade5(),
+                SelectedObject.getAbilityTest() == null ? 0 : SelectedObject.getAbilityTest(),
+                SelectedObject.getMathGrade6() == null ? 0 : SelectedObject.getMathGrade6(),
+                SelectedObject.getLangArtGrade6() == null ? 0 : SelectedObject.getLangArtGrade6(),
+                SelectedObject.getLangArtGrade6Curri() == null ? 0 : SelectedObject.getLangArtGrade6Curri(),
+                SelectedObject.getScience() == null ? 0 : SelectedObject.getScience(),
+                SelectedObject.getMathGrade6Curri() == null ? 0 : SelectedObject.getMathGrade6Curri(),
                 SelectedObject.getSocialStudies() == null ? 0 : SelectedObject.getSocialStudies(),
 
         };
@@ -207,13 +210,11 @@ public class AssessmentController {
         IdTf.setText(String.valueOf(SelectedObject.getId()));
         FNametf.setText(SelectedObject.getFirstName());
         LNameff.setText(SelectedObject.getLastName());
-        LangAG5.setText(SelectedObject.getBirthCertNum());
     }
 
     private void LoadSelectedData() {
         clearTextField();
         LoadInfo(ListView.getSelectionModel().getSelectedItem());
-
 
     }
 
@@ -297,35 +298,19 @@ public class AssessmentController {
             Dialog.setHeaderText(null);
             Dialog.setContentText("Enter Correct Student ID");
             Dialog.showAndWait();
-
         }
-
     }
 
     public void saveToDb() {
-
         int Stud_Id = GetStudentById(Integer.parseInt(IdTf.getText())).getId();
-        System.out.print(Stud_Id);
-        boolean IsFound = false;
-        ObservableList<Assessment> AssessmentList = GetAssessmentList();
-        try {
-            for (Assessment Item : AssessmentList) {
-                if (Item.getIdStu() == Stud_Id) {
-                    IsFound = true;
-                }
-            }
-        } catch (Exception EXC) {
-        }
-        if (IsFound) {
+        if (Utilities.FindObjectInAssessmentList(AssessmentList, Stud_Id)) {
             Alert Dialog = new Alert(Alert.AlertType.WARNING);
             Dialog.setContentText("Student Assessment Has Already Being Assigned");
             Dialog.setTitle("Not Saved");
             Dialog.setHeaderText("Save Dialog");
             Dialog.showAndWait();
         } else if (Validate()) {
-            //Assessment Assessment = null;
             if (Stud_Id != 0) {
-
                 Assessment newAssessment = new Assessment();
                 newAssessment.setIdStu(Stud_Id);
                 newAssessment.setAbilityTest(Integer.parseInt(ATestG6.getText() == "" ? "0"
@@ -378,10 +363,10 @@ public class AssessmentController {
 
                 Assessment assessment = ARepo.save(newAssessment);
                 ARepo.saveAndFlush(newAssessment);
+                SecondView.getColumns().clear();
                 LoadAssessmentTable();
                 LoadAssessmentDetails();
                 saveAlert(assessment);
-
             } else {
                 Error();
             }
@@ -389,16 +374,13 @@ public class AssessmentController {
             Empty();
         }
     }
-
     private void saveAlert(Assessment assessment) {
-
         Alert Dialog = new Alert(Alert.AlertType.INFORMATION);
         Dialog.setContentText("Student Assessment Has Being Saved!");
         Dialog.setTitle("The Student" + assessment.getIdStu()+"" + "Has Being Added");
         Dialog.setHeaderText("Save Dialog");
         Dialog.showAndWait();
     }
-
     private void Error() {
         Alert Dialog = new Alert(Alert.AlertType.ERROR);
         Dialog.setContentText("Assessment Cannot Be Saved!");
@@ -406,7 +388,6 @@ public class AssessmentController {
         Dialog.setHeaderText("Save Dialog");
         Dialog.showAndWait();
     }
-
     private void Empty() {
         Alert Dialog = new Alert(Alert.AlertType.INFORMATION);
         Dialog.setContentText("Enter Student Assessment Record");
@@ -414,7 +395,6 @@ public class AssessmentController {
         Dialog.setHeaderText("Save Dialog");
         Dialog.showAndWait();
     }
-
     private void NoRecord() {
         Alert Dialog = new Alert(Alert.AlertType.WARNING);
         Dialog.setContentText("Student Assessment Record Cannot be Found");
@@ -422,7 +402,6 @@ public class AssessmentController {
         Dialog.setHeaderText("Update Dialog");
         Dialog.showAndWait();
     }
-
     private void UpdateDialog() {
         Alert Dialog = new Alert(Alert.AlertType.INFORMATION);
         Dialog.setContentText("Student Assessment Has Being Updated");
@@ -432,26 +411,16 @@ public class AssessmentController {
     }
     @FXML
     public void UpdateData() {
-
-        boolean IsFound = false;
         ObservableList<Assessment> AssessmentList = GetAssessmentList();
-        for (Assessment Item : AssessmentList) {
-            if (Item.getIdStu() ==
-                    SecondView.getSelectionModel().getSelectedItem().getIdStu()) {
-                IsFound = true;
-                break;
-            }
-        }
-
-        if (!IsFound) {
+        if (Utilities.FindObjectInAssessmentList(AssessmentList,
+                SecondView.getSelectionModel().getSelectedItem().getIdStu())) {
             NoRecord();
         } else {
             try {
-
-
                 SecondView.getSelectionModel().getSelectedItem().setAbilityTest(Integer.parseInt(ATestG6.getText()));
                 SecondView.getSelectionModel().getSelectedItem().setAlgebra(Integer.parseInt(Alg.getText()));
                 SecondView.getSelectionModel().getSelectedItem().setComTask(Integer.parseInt(ComT.getText()));
+                SecondView.getSelectionModel().getSelectedItem().setLangArtGrade6(Integer.parseInt(LangAG6.getText()));
                 SecondView.getSelectionModel().getSelectedItem().setGenKnowledge(Integer.parseInt(GenKnow.getText()));
                 SecondView.getSelectionModel().getSelectedItem().setGeometry(Integer.parseInt(Geo.getText()));
                 SecondView.getSelectionModel().getSelectedItem().setLangArtGrade4(Integer.parseInt(LangAG4.getText()));
@@ -472,7 +441,6 @@ public class AssessmentController {
                 SecondView.getSelectionModel().getSelectedItem().setStructure(Integer.parseInt(Stru.getText()));
                 SecondView.getSelectionModel().getSelectedItem().setVocab(Integer.parseInt(Vocab.getText()));
                 SecondView.getSelectionModel().getSelectedItem().setWritingDrawing(Integer.parseInt(WDraw.getText()));
-
             } catch (IllegalArgumentException IEX) {
                 System.out.print("Field Is Empty");
             }
@@ -482,13 +450,10 @@ public class AssessmentController {
             SecondView.getItems().clear();
             LoadAssessmentTable();
         }
-
     }
-
 
     @FXML
     public void DeleteData(ActionEvent actionEvent) {
-
         List<Assessment> Assessment = SecondView.getSelectionModel().getSelectedItems();
         boolean IsFound = false;
         ObservableList<Assessment> AssessmentList = GetAssessmentList();
@@ -511,10 +476,7 @@ public class AssessmentController {
             SecondView.getItems().clear();
             LoadAssessmentDetails();
         }
-
-
     }
-
 }
 
 

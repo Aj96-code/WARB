@@ -13,13 +13,13 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Base64Utils;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.util.FileSystemUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Optional;
 
 
@@ -105,7 +105,6 @@ public class AddStudentController {
         ObservableList<String> gender = FXCollections.observableArrayList("male", "female", "other");
         ObservableList<String> sportsHouses = FXCollections.observableArrayList("Blue", "Red", "Purple", "Green");
         txtGender.setItems(gender);
-
         txtSportsHouse.setItems(sportsHouses);
     }
 
@@ -155,7 +154,7 @@ public class AddStudentController {
             ProfilePicture.setImage(image);
             StudentTable.getSelectionModel().clearSelection();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Fields Could Not be Cleared");
 
         }
     }
@@ -280,7 +279,7 @@ public class AddStudentController {
             ColGuardianTele.setCellValueFactory(new PropertyValueFactory<>("GuardianTel"));
             ColPhoto.setCellValueFactory(new PropertyValueFactory<>("Photo"));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Cells Not Set");
         }
 
     }
@@ -351,7 +350,7 @@ public class AddStudentController {
             Image ImageBytes = new Image(StudentTable.getSelectionModel().getSelectedItem().getPhoto());
             ProfilePicture.setImage(ImageBytes);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Fields Not Loaded");
 
         }
 
@@ -413,7 +412,7 @@ public class AddStudentController {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Could not be Updated");
         }
     }
 

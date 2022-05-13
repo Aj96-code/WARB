@@ -1,5 +1,10 @@
 package com.example.warb.Services;
 
+import com.example.warb.JPAEntities.Assessment;
+import com.example.warb.JPAEntities.Attendance;
+
+import java.util.List;
+
 public class FormUtilities {
 
     //Y for Year, T for Term
@@ -18,5 +23,22 @@ public class FormUtilities {
                 || !Y6T1.equals("")||  !Y6T2.equals("") ||   !Y6T3.equals("");
 
     }
+    //Returns True if the value is found
+    public boolean FindObjectInAttendanceList(List<Attendance> Objects, int ValueToLookFor ){
+        for(Attendance O : Objects){
+            if(O.getIdStu().equals(ValueToLookFor)){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public boolean FindObjectInAssessmentList(List<Assessment> Objects, int ValueToLookFor){
+        for(Assessment O: Objects){
+            if(O.getIdStu().equals(ValueToLookFor)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

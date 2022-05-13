@@ -19,6 +19,7 @@
                 <!--Add Student Button Start -->
                 <Button alignment="CENTER" onAction="#dashboard" prefHeight="77.0" prefWidth="214.0"
                         text="Dashboard  " textFill="WHITE">
+
                     <graphic>
                         <ImageView fitHeight="31.0" fitWidth="30" translateX="-23.0">
                             <image>

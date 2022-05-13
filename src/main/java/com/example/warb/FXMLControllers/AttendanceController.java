@@ -16,8 +16,6 @@ import javafx.scene.image.ImageView;
 import org.controlsfx.control.tableview2.TableView2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import java.io.ByteArrayInputStream;
-import java.util.Base64;
 import java.util.Optional;
 @Controller
 public class AttendanceController {
@@ -130,20 +128,8 @@ public class AttendanceController {
 
     public void saveAttendanceToDataBase() {
         int Stud_Id = getStudentById(Integer.parseInt(TbId.getText())).getId();
-        System.out.println(Stud_Id);
-        boolean IsFound = false;
         ObservableList<Attendance> AttendanceList = getListOfAttendance();
-        try {
-            for (Attendance Item : AttendanceList) {
-                if (Item.getIdStu() == Stud_Id) {
-                    IsFound = true;
-                    break;
-                }
-            }
-        } catch (Exception EXC) {
-            EXC.printStackTrace();
-        }
-        if (IsFound) {
+        if (Utilities.FindObjectInAttendanceList(AttendanceList,Stud_Id)) {
             setAlert(new Alert(Alert.AlertType.WARNING), "Not Saved",
                     "Student Attendance is already recorded", "Save Dialog");
             Dialog.showAndWait();
@@ -201,16 +187,9 @@ public class AttendanceController {
     }
     @FXML
     public void btnUpdate_Click(ActionEvent event) {
-        boolean IsFound = false;
         ObservableList<Attendance> AttendanceList = getListOfAttendance();
-        for (Attendance Item : AttendanceList) {
-            if (Item.getIdStu().equals(
-                    AttendanceTable.getSelectionModel().getSelectedItem().getIdStu())) {
-                IsFound = true;
-                break;
-            }
-        }
-        if (!IsFound) {
+        if (!Utilities.FindObjectInAttendanceList(AttendanceList,
+                AttendanceTable.getSelectionModel().getSelectedItem().getIdStu())) {
             setAlert(new Alert(Alert.AlertType.WARNING), "No Record",
                     "Student's Attendance record is not found ", "Update Dialog");
             Dialog.showAndWait();
@@ -248,15 +227,9 @@ public class AttendanceController {
     }
     @FXML
     public void btnDeleteClick(ActionEvent event) {
-        boolean IsFound = false;
         ObservableList<Attendance> AttendanceList = getListOfAttendance();
-        for (Attendance Item : AttendanceList) {
-            if (Item.getIdStu().equals( AttendanceTable.getSelectionModel().getSelectedItem().getIdStu())) {
-                IsFound = true;
-                break;
-            }
-        }
-        if (IsFound) {
+        if (Utilities.FindObjectInAttendanceList(AttendanceList,
+                AttendanceTable.getSelectionModel().getSelectedItem().getIdStu())) {
             setAlert(new Alert(Alert.AlertType.CONFIRMATION), "Delete",
                     "Are you sure?", "Delete Dialog");
             Optional<ButtonType> Result = Dialog.showAndWait();

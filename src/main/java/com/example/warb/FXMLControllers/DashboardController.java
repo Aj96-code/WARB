@@ -50,7 +50,7 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         PassingUserService Passing = PassingUserService.getInstance();
         User CurrentUser = Passing.getUser();
-        LblUserName.setText(CurrentUser.getFirstName());
+        LblUserName.setText(CurrentUser.getUsername());
         AmountOfStudent = StudentRepo.findAll().size();
         AmountOfUser = UserRepo.findAll().size();
         StudentCount.setText(String.valueOf(Integer.valueOf((int) AmountOfStudent)));

@@ -8,32 +8,52 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.warb.FXMLControllers.LoginController">
     <center>
         <AnchorPane prefHeight="408.0" prefWidth="322.0" BorderPane.alignment="CENTER">
-            <Label layoutX="35.0" layoutY="120.0" text="Username" />
-            <Label layoutX="35.0" layoutY="200.0" text="Password" />
-            <Button fx:id="loginBtn" layoutX="35.0" layoutY="294.0" mnemonicParsing="false" onAction="#loginActionBtn" prefHeight="36.0" prefWidth="92.0" style="-fx-background-color: blue;" text="Login" textFill="WHITE">
+            <Label layoutX="35.0" layoutY="120.0" text="Username">
+            <font>
+               <Font name="Gill Sans MT" size="14.0" />
+            </font></Label>
+            <Label layoutX="35.0" layoutY="207.0" text="Password">
+            <font>
+               <Font name="Gill Sans MT" size="14.0" />
+            </font></Label>
+            <Button fx:id="loginBtn" layoutX="47.0" layoutY="294.0" mnemonicParsing="false" onAction="#loginActionBtn" prefHeight="36.0" prefWidth="92.0" style="-fx-background-color: blue;" text="Login" textFill="WHITE">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <Button fx:id="BtnCancel" layoutX="151.0" layoutY="294.0" mnemonicParsing="false" onAction="#BtnCancel_Click" prefHeight="36.0" prefWidth="94.0" style="-fx-background-color: blue;" text="Cencel" textFill="WHITE">
+            <Button fx:id="BtnCancel" layoutX="168.0" layoutY="294.0" mnemonicParsing="false" onAction="#BtnCancel_Click" prefHeight="36.0" prefWidth="94.0" style="-fx-background-color: blue;" text="Cencel" textFill="WHITE">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
             </Button>
-            <TextField fx:id="TbUserName" layoutX="35.0" layoutY="143.0" prefHeight="25.0" prefWidth="246.0" />
-            <PasswordField fx:id="TbPassword" layoutX="35.0" layoutY="232.0" prefHeight="25.0" prefWidth="244.0" />
+            <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="35.0" layoutY="142.0">
+                <Image url="@../../../img/username.png" />
+            </ImageView>
+            <ImageView fitHeight="21.0" fitWidth="27.0" layoutX="35.0" layoutY="234.0">
+                <Image url="@../../../img/Password.png" />
+            </ImageView>
+            <TextField fx:id="TbUserName" layoutX="69.0" layoutY="143.0" prefHeight="25.0" prefWidth="197.0" />
+            <PasswordField fx:id="TbPassword" layoutX="70.0" layoutY="232.0" prefHeight="25.0" prefWidth="193.0" />
          <Label fx:id="ErrorMessage" layoutX="38.0" layoutY="95.0" prefHeight="24.0" prefWidth="226.0" textFill="#f40606">
             <font>
                <Font name="System Bold Italic" size="12.0" />
             </font>
          </Label>
+         <Label contentDisplay="CENTER" layoutX="108.0" layoutY="51.0" prefHeight="38.0" prefWidth="81.0" text="Login">
+            <font>
+               <Font name="Gill Sans MT" size="36.0" />
+            </font>
+         </Label>
         </AnchorPane>
     </center>
     <left>
-        <ImageView fitHeight="407.0" fitWidth="314.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+
+        <Pane prefHeight="401.0" prefWidth="319.0" style="-fx-background-color: #0f3063;" BorderPane.alignment="CENTER">
+        <ImageView fitHeight="159.0" fitWidth="296.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
             <image>
                 <Image url="@../../../img/logo.png" />
             </image>
         </ImageView>
+        </Pane>
     </left>
 </BorderPane>

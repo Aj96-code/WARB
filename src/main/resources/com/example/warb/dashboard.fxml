@@ -54,14 +54,14 @@
         </HBox>
     </HBox>
     <PieChart fx:id="PieChart" layoutX="553.0" layoutY="395.0" prefHeight="232.0" prefWidth="299.0" />
-   <HBox layoutX="14.0" layoutY="6.0" prefHeight="46.0" prefWidth="277.0" spacing="5.0">
+   <HBox layoutX="14.0" layoutY="6.0" prefHeight="46.0" prefWidth="533.0" spacing="5.0">
       <children>
-          <Label fx:id="LblWelcome" text="Welcome">
+          <Label fx:id="LblWelcome" prefHeight="37.0" prefWidth="108.0" text="Welcome">
             <font>
                <Font name="System Bold" size="24.0" />
             </font>
          </Label>
-          <Label fx:id="LblUserName" text="Admin">
+          <Label fx:id="LblUserName" prefHeight="37.0" prefWidth="179.0" text="Admin">
             <font>
                <Font name="System Bold" size="24.0" />
             </font>

@@ -72,6 +72,16 @@ public class Assessment {
     @Column(name = "MathGrade6")
     private Integer mathGrade6;
 
+    public Integer getLangArtGrade6() {
+        return langArtGrade6;
+    }
+
+    public void setLangArtGrade6(Integer langArtGrade6) {
+        this.langArtGrade6 = langArtGrade6;
+    }
+
+    @Column(name = "LangArtGrade6")
+    private Integer langArtGrade6;
     @Column(name = "LangArtGrade6Curri")
     private Integer langArtGrade6Curri;
 

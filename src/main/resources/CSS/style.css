@@ -2,6 +2,28 @@
 .root{
   -fx-font-family: url("Fonts/Lato-Black.ttf");
 }
+.radio-button .radio{
+    visibility:hidden;
+}
+.radio-button .radio:selected {
+    -fx-background-color: #7156DD;
+}
+.radio-button .radio:focused{
+    -fx-background-color: #7156DD;
+}
+.radio-button .radio:selected .dot{
+    -fx-background-color: #7156DD;
+}
+.radio-button{
+    cursor: pointer;
+    -fx-background-color: #00f3063;
+}
+.radio-button:hover{
+  -fx-background-color: #19468c;
+}
+.radio-button:pressed{
+-fx-background-color: #7156DD;
+}
 .button {
   border: none;
   -fx-background-color:  #0f3063;
